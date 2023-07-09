@@ -1,0 +1,31 @@
+
+.horizontal {
+    width: 200px; /* Set a width if you like */
+  }
+  
+  .horizontal-menu a {
+    background-color:green; /* Grey background color */
+    color: black; /*black  text color */
+    display:inline-block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+  }
+  .search{
+    display: inline;
+    margin-right: 10px;
+    margin-top: 10px;
+    padding: 200px;
+  }
+  .search input{
+    width:200px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-left: 10px;
+    padding-right: 100px;
+    }
+    .search button{
+        background-color:aqua;
+        padding: 10px;
+    }
