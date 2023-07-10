@@ -64,7 +64,7 @@ body {
     padding: 30px;
     border-radius: 5px;
     height: 100%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
   
   .form-box h1, .form-box h2 {
