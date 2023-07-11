@@ -54,9 +54,9 @@
             <div class="vertical-menu">
         
         <a href="../admindash/addmovies.php">Add Movies</a>
-        <a href="../moviemanagement/movielist.php">Movie List</a>
-        <a href="../moviemanagement/bookinglist.php">Booking List</a>
-        <a href="../moviemanagement/usermanagement.php">Users</a>
+        <a href="../admindash/movielist.php">Movie List</a>
+        <a href="../admindash/bookinglist.php">Booking List</a>
+        <a href="../admindash/usermanagement.php">Users</a>
     </div>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#">Profile</a></li>

@@ -77,11 +77,11 @@ input[type="submit"]:hover {
   
   <label for="image">Movie Poster Image:</label>
   <input type="file" id="image" name="image" ><br>
-
-  <label for="time">Time</label>
+<br>
+  <label for="time"> Show Time</label>
   <input type="time" id="time" name="time" required><br>
 
-
+<br>
   <input type="submit" value="Add Movie" name="add">
 </form>
 
@@ -125,7 +125,7 @@ if (isset($_POST['add'])) {
 
                     if ($result) {
                         echo '<script type="text/javascript"> alert("Movie added successfully."); </script>';
-                        header("Location: ../moviemanagement/movielist.php");
+                        header("Location: ../admindash/movielist.php");
 
                     } else {
                         echo '<script type="text/javascript"> alert("Error: ' . $conn->error . '"); </script>';

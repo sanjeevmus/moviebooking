@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $sql = "DELETE FROM movie WHERE id = $id";
 
   if ($conn->query($sql) === TRUE) {
-    header("location:../moviemanagement/movielist.php");
+    header("location:../admindash/movielist.php");
   } else {
     echo "Error deleting movie: " . $conn->error;
   }
@@ -24,3 +24,4 @@ if(!isset(  $_SESSION['aname'] ))
 }
 
 ?>
+<a href=""

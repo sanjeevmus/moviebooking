@@ -151,7 +151,7 @@ if(!isset( $_SESSION['uid']))
     <input type='hidden' name='time' id='' value='$time'>
     <input type='hidden' name='mid' id='' value='$mid'>
     <input type='hidden' name='mname' id='' value='$name'>
-    <input type='submit' name='book_now' id=' ' value='Book Now'>
+    <input type='submit' name='book_now' id=' ' value='Book A Show'>
 </form>
       </div>
     </div>  

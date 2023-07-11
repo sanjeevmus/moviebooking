@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               $result = $conn->query($sql);
 
               if ($result) {
-                header("Location: ../moviemanagement/movielist.php");
+                header("Location: ../admindash/movielist.php");
                 exit;
               } else {
                 echo '<script type="text/javascript"> alert("Error: ' . $conn->error . '"); </script>';
@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = $conn->query($sql);
 
         if ($result) {
-          header("Location: ../moviemanagement/movielist.php");
+          header("Location: ../admindash/movielist.php");
           exit;
         } else {
           echo '<script type="text/javascript"> alert("Error: ' . $conn->error . '"); </script>';
