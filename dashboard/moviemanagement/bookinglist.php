@@ -2,7 +2,14 @@
 include('../admindash/aheader.php');
 
 ?>
+<?php
+session_start();
+if(!isset(  $_SESSION['aname'] ))
+{
+    header("location:../../admin/alogin.php");
+}
 
+?>
 <style>
   .h2 {
     text-align: center;

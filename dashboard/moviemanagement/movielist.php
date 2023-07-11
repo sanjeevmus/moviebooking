@@ -3,6 +3,16 @@ include('../admindash/aheader.php');
 
 ?>
 
+
+<?php
+session_start();
+if(!isset(  $_SESSION['aname'] ))
+{
+    header("location:../../admin/alogin.php");
+}
+
+?>
+
 <style>
   .h2 {
     text-align: center;
@@ -45,6 +55,7 @@ include('../admindash/aheader.php');
     background-color: #f44336;
     color: white;
   }
+  
 </style>
 
 <h2 class="h2">Movie List</h2>
@@ -85,7 +96,7 @@ include('../admindash/aheader.php');
         <td>$description</td>
         <td>$price</td>
         <td>$time</td>
-        <td><img src='$image' alt='Movie Poster'></td>
+        <td ><img src='../../images/$image' style='width: 110px; height: 50px' alt='Movie Poster'></td>
         <td>
           <form action='edit.php' method='POST'>
             <input type='hidden' name='id' value='$id'>

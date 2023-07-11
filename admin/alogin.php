@@ -4,7 +4,7 @@ include('../admin/header.php');
     <div class="form">
         <div class="form-box">
             <h1 id="Title">Sign In</h1>
-            <form method="POST" action="aloginbackend.php">
+            <form method="post" action="aloginbackend.php">
                 <div class="input-group">
                         <div class="input-field">
                             <input type="text" placeholder="Enter Your Name" name="aname" required><br>

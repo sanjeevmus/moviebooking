@@ -1,10 +1,20 @@
 <?php include('header.php'); ?>
 
+<?php
+session_start();
+if(!isset( $_SESSION['uid']))
+{
+    header("location:../../login.php");
+}
+
+?>
+
+
 <style>
     h2{
         text-align: center;
         font-weight: 500;
-        font-family: cursive;
+        /* font-family: cursive; */
     }
 .dashboard-container {
   max-width: 800px;
@@ -46,15 +56,17 @@
 }
 
 .movies-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+ width: 25%;
+ display: flex;
 }
 
 .movie-card {
-  border: 1px solid #ccc;
+  border: 3px solid #ccc;
   padding: 10px;
   width: 250px;
+  margin: 25px;
+
+
 }
 
 .movie-details {
@@ -64,17 +76,16 @@
 .movie-name {
   font-weight: bold;
   margin-bottom: 5px;
-  font-family: cursive;
 }
 
 .movie-description {
   margin-bottom: 20px;
-  font-family: cursive;
+  /* font-family: cursive; */
 }
 
 .movie-price {
   margin-bottom: 20px;
-  font-family: cursive;
+  /* font-family: cursive; */
 }
 .movie-card img{
   height:200px;
@@ -84,6 +95,13 @@
   background-color: #4caf50;
 }
 </style>
+
+
+
+
+
+
+
 
 <div class="dashboard-container">
   <div class="horizontal-menu">
@@ -125,12 +143,10 @@
     
       <img src='../../images/$image' alt=Movie Poster>
       <div class=movie-details>
-        <h5 class=movie-name>'$name'</h5>
-        <p class=movie-description>$description</p>
-        <p class=movie-price>$price</p>
-        
-        
-        
+        movie title:<h5 class=movie-name>'$name'</h5>
+       Description: <p class=movie-description>$description</p>
+       PRice: <p class=movie-price>$price</p>
+       Show Time <p class=movie-price>$time</p>
         <form action='test.php'  method='post'>
     <input type='hidden' name='time' id='' value='$time'>
     <input type='hidden' name='mid' id='' value='$mid'>

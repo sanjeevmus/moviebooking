@@ -13,7 +13,6 @@ include('header.php');
                     <div class="input-field">
                     <input type="password" placeholder="Password" name="password" required><br>
                     </div>
-                    <p>Forgot Password? <a href="Forgot.php">Click here!</a></p>
                     <br>
                     <div class="SignUp-link">
                         <button type="submit" name="signinBtn">Sign In</button>

@@ -1,3 +1,13 @@
+<?php
+session_start();
+if(!isset(  $_SESSION['aname'] ))
+{
+    header("location:../../admin/alogin.php");
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>

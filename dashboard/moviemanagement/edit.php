@@ -17,36 +17,83 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $row['name'];
     $description = $row['description'];
     $price = $row['price'];
-    $time = $row ['time'];
+    $time = $row['time'];
     $image = $row['image'];
+
+    if (isset($_POST["update"])) {
+      $id = $_POST["id"];
+      $name = $_POST["name"];
+      $description = $_POST["description"];
+      $price = $_POST["price"];
+      $time = $_POST["time"];
+  
+      if ($_FILES["image"]["name"]) {
+        $file_name = $_FILES["image"]["name"];
+        $file_size = $_FILES["image"]["size"];
+        $file_tmp = $_FILES["image"]["tmp_name"];
+        $file_type = $_FILES["image"]["type"];
+        $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+
+        $allowed_extensions = array("jpg", "jpeg", "png"); // Add any additional allowed extensions here
+
+        if (in_array($file_ext, $allowed_extensions)) {
+          if ($file_size < 5242880) { // Max file size: 5MB (you can adjust this value)
+            $destination = "../../images/" . $file_name;
+
+            if (move_uploaded_file($file_tmp, $destination)) {
+              $image = mysqli_real_escape_string($conn, $file_name);
+
+              // Update data in the database with image
+              $sql = "UPDATE movie SET name='$name', description='$description', price='$price', time='$time', image='$image' WHERE id=$id";
+              $result = $conn->query($sql);
+
+              if ($result) {
+                header("Location: ../moviemanagement/movielist.php");
+                exit;
+              } else {
+                echo '<script type="text/javascript"> alert("Error: ' . $conn->error . '"); </script>';
+              }
+            } else {
+              echo '<script type="text/javascript"> alert("Error moving uploaded file."); </script>';
+            }
+          } else {
+            echo '<script type="text/javascript"> alert("File size exceeds the maximum limit."); </script>';
+          }
+        } else {
+          echo '<script type="text/javascript"> alert("Invalid file format. Only JPG, JPEG, and PNG files are allowed."); </script>';
+        }
+      } else {
+        // Update data in the database without image
+        $sql = "UPDATE movie SET name='$name', description='$description', price='$price', time='$time' WHERE id=$id";
+        $result = $conn->query($sql);
+
+        if ($result) {
+          header("Location: ../moviemanagement/movielist.php");
+          exit;
+        } else {
+          echo '<script type="text/javascript"> alert("Error: ' . $conn->error . '"); </script>';
+        }
+      }
+    }
   } else {
     echo "No movie found with ID: $id";
     exit();
   }
 }
-
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update"])) {
-  $id = $_POST["id"];
-  $name = $_POST["name"];
-  $description = $_POST["description"];
-  $price = $_POST["price"];
-  $time = $_POST["time"];
-
-  // Update the movie details in the database
-  $sql = "UPDATE movie SET name='$name', description='$description', price='$price', time='$time' WHERE id=$id";
-
-  if ($conn->query($sql) === TRUE) {
-    echo "Movie updated successfully!";
-  } else {
-    echo "Error updating movie: " . $conn->error;
-  }
-}
 ?>
+<?php
+session_start();
+if(!isset(  $_SESSION['aname'] ))
+{
+    header("location:../../admin/alogin.php");
+}
 
+?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>Edit Movie</title>
+  
   <style>
     .h2 {
       text-align: center;
@@ -89,7 +136,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update"])) {
   <h2 class="h2">Edit Movie</h2>
 
   <div class="edit-form">
-    <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <form method="post" action="edit.php" enctype="multipart/form-data">
       <input type="hidden" name="id" value="<?php echo $id; ?>">
       <label for="name">Movie Name:</label>
       <input type="text" name="name" id="name" value="<?php echo $name; ?>" required>
@@ -99,6 +146,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update"])) {
       <input type="text" name="price" id="price" value="<?php echo $price; ?>" required>
       <label for="time">Time</label>
       <input type="time" name="time" id="time" value="<?php echo $time; ?>" required><br><br>
+     
+      <label for="image">Movie Poster Image:</label>
+      <input type="file" id="image" name="image"><br> 
       <input type="submit" name="update" value="Update">
     </form>
   </div>

@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="../admindash/style.css">
     <style>
 .vertical-menu {
-  background-color: #f1f1f1;
-  width: 100%;
   position: relative;
   left: 0;
   height: 100%;
@@ -19,14 +17,27 @@
 }
 
 .vertical-menu a {
-  background-color: #ddd;
-  color: #333;
+  color: #fff;
   display: flex;
   position: relative;
   text-decoration: none;
-  padding-left: 85px;
-  padding-right: 85px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
+.admin-login-info {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .admin-login-info i {
+        margin: 0 10px;
+        cursor: pointer;
+    }
+
+    .admin-login-info img {
+        margin-left: 10px;
+    }
 
     </style>
     <link rel="stylesheet" href="style.css" type="text/css">
@@ -39,7 +50,14 @@
                 <a href="#" class="logo">
                     MOVIE WORLD
                 </a>
-            </div>
+</div>
+            <div class="vertical-menu">
+        
+        <a href="../admindash/addmovies.php">Add Movies</a>
+        <a href="../moviemanagement/movielist.php">Movie List</a>
+        <a href="../moviemanagement/bookinglist.php">Booking List</a>
+        <a href="../moviemanagement/usermanagement.php">Users</a>
+    </div>
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="#">Profile</a></li>
                 <li><a href="../../admin/logoutbackend.php">Logout</a></li>
@@ -47,13 +65,7 @@
             <!-- MOBILE MENU TOGGLE -->
         </div>
     </div>
-    <div class="vertical-menu">
-        <a href="../admindash/adash.php">Dashboard</a>
-        <a href="../admindash/addmovies.php">Add Movies</a>
-        <a href="../moviemanagement/movielist.php">Movie List</a>
-        <a href="../moviemanagement/bookinglist.php">Booking List</a>
-        <a href="../moviemanagement/usermanagement.php">Users</a>
-    </div>
+    
 
     
     <!-- Rest of your HTML content -->

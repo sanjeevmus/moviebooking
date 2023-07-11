@@ -16,6 +16,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo "Error deleting movie: " . $conn->error;
   }
 }
-?>
+?><?php
+session_start();
+if(!isset(  $_SESSION['aname'] ))
+{
+    header("location:../../admin/alogin.php");
+}
 
-<a href="../moviemanagement/movielist.php">
+?>

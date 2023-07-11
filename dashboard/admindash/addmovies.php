@@ -1,8 +1,16 @@
 <?php
-include ('../admindash/aheader.php')
+include ('../admindash/aheader.php');
+?>
+<?php
+session_start();
+if(!isset(  $_SESSION['aname'] ))
+{
+    header("location:../../admin/alogin.php");
+}
+
 ?>
 <style>
-   form {
+  form {
   width: 500px;
   height: max-content;
   margin-top: 20px;
@@ -28,7 +36,6 @@ label {
 input[type="text"],
 input[type="number"],
 input[type="date"],
-input[type="time"],
 textarea {
   width: 100%;
   padding: 8px;
@@ -55,9 +62,8 @@ input[type="submit"]:hover {
   background-color: #45a049;
 }
 
-
 </style>
-<form action="addmovies.php" method="POST">
+<form action="addmovies.php" method="POST" enctype="multipart/form-data">
   <h2><u>Add Movie</u></h2>
 
   <label for="title">Movie Name:</label>
@@ -78,41 +84,71 @@ input[type="submit"]:hover {
 
   <input type="submit" value="Add Movie" name="add">
 </form>
+
 <?php
 $servername = "localhost";
 $username = "root";
 $password = ""; // Provide a valid password here if required
 $dbname = "moviebooking";
 
-// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
 if ($conn->connect_error) {
     die('Connection failed: ' . $conn->connect_error);
 }
 
-// Process form submission
 if (isset($_POST['add'])) {
     $name = $_POST['name'];
     $description = $_POST['description'];
     $price = $_POST['price'];
-    $image = $_POST['image'];
-    $time =$_POST['time'];
+    $time = $_POST['time'];
 
-    // Sanitize input (optional but recommended)
-    $name = mysqli_real_escape_string($conn, $name);
-    $description = mysqli_real_escape_string($conn, $description);
-    $price = mysqli_real_escape_string($conn, $price);
-    $image = mysqli_real_escape_string($conn, $image);
+    if ($_FILES["image"]["name"]) {
+        $file_name = $_FILES["image"]["name"];
+        $file_size = $_FILES["image"]["size"];
+        $file_tmp = $_FILES["image"]["tmp_name"];
+        $file_type = $_FILES["image"]["type"];
+        $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
-    // Insert data into the database
-    $sql = "INSERT INTO movie (name, description, price, image, time) VALUES ('$name', '$description', '$price', '$image', '$time')";
-    $result = $conn->query($sql);
-    if ($result) {
-        header("Location:../moviemanagement/movielist.php");
+        $allowed_extensions = array("jpg", "jpeg", "png"); // Add any additional allowed extensions here
+
+        if (in_array($file_ext, $allowed_extensions)) {
+            if ($file_size < 5242880) { // Max file size: 5MB (you can adjust this value)
+                $destination = "../../images/" . $file_name;
+
+                if (move_uploaded_file($file_tmp, $destination)) {
+                    $image = mysqli_real_escape_string($conn, $destination);
+
+                    // Insert data into the database
+                    $sql = "INSERT INTO movie (name, description, price, image, time) VALUES ('$name', '$description', '$price', '$file_name', '$time')";
+                    $result = $conn->query($sql);
+
+                    if ($result) {
+                        echo '<script type="text/javascript"> alert("Movie added successfully."); </script>';
+                        header("Location: ../moviemanagement/movielist.php");
+
+                    } else {
+                        echo '<script type="text/javascript"> alert("Error: ' . $conn->error . '"); </script>';
+                    }
+                } else {
+                    echo '<script type="text/javascript"> alert("Error moving uploaded file."); </script>';
+                }
+            } else {
+                echo '<script type="text/javascript"> alert("File size exceeds the maximum limit."); </script>';
+            }
+        } else {
+            echo '<script type="text/javascript"> alert("Invalid file format. Only JPG, JPEG, and PNG files are allowed."); </script>';
+        }
     } else {
-        echo "Error: " . $conn->error;
+        // Insert data into the database without an image
+        $sql = "INSERT INTO movie (name, description, price, time) VALUES ('$name', '$description', '$price', '$time')";
+        $result = $conn->query($sql);
+
+        if ($result) {
+            echo '<script type="text/javascript"> alert("Movie added successfully."); </script>';
+        } else {
+            echo '<script type="text/javascript"> alert("Error: ' . $conn->error . '"); </script>';
+        }
     }
 }
 ?>
