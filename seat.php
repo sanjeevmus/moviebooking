@@ -135,7 +135,7 @@
   <div class="movie-container">
     <label for="movie">Pick a movie:</label>
     <select id="movie">
-      <?php
+    <?php
       // Assuming you have a database connection and the necessary query to fetch movie data
       // Replace "your-db-connection", "username", "password", and "your-movies-table" with the appropriate values
       $db = new PDO('mysql:host=localhost;dbname=moviebooking', 'root', '');
@@ -146,7 +146,7 @@
         $id = $movie['id'];
         $name = $movie['name'];
         $price = $movie['price'];
-        echo "<option value=\"$id\">$name ($$price)</option>";
+        echo "<option value=\"$price\">$name (Rs$price)</option>";
       }
       ?>
     </select>
@@ -217,7 +217,7 @@
   </div>
 
   <p class="text">
-    You have selected <span id="count">0</span> seats for a price of $<span id="total">0</span>
+    You have selected <span id="count">0</span> seats for a price of Rs<span id="total">0</span>
   </p>
 
   <button class="submit-btn" id="submit-btn">Submit</button>

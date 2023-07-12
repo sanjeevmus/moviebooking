@@ -5,7 +5,7 @@
  const total = document.getElementById("total");
  const movieSelect = document.getElementById("movie");
  const submitButton = document.getElementById("submit-btn");
- let ticketPrice = +movieSelect.value;
+ let ticketPrice = +movie.price;
 
  populateUI();
 
