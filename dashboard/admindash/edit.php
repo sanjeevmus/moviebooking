@@ -17,7 +17,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $row['name'];
     $description = $row['description'];
     $price = $row['price'];
-    $time = $row['time'];
+    $duration = $row['duration'];
+    $relyear = $row['relyear'];
+    $director = $row['director'];
+    $actor = $row['actor'];
+    $fshow = $row['fshow'];
+    $sshow = $row['sshow'];
+    $tshow = $row['tshow'];
     $image = $row['image'];
 
     if (isset($_POST["update"])) {
@@ -25,8 +31,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $name = $_POST["name"];
       $description = $_POST["description"];
       $price = $_POST["price"];
-      $time = $_POST["time"];
-  
+      $duration = $_POST["duration"];
+      $relyear = $_POST['relyear'];
+      $director = $_POST["director"];
+      $actor = $_POST["actor"];
+      $fshow = $_POST["fshow"];
+      $sshow = $_POST["sshow"];
+      $tshow = $_POST["tshow"];
+
       if ($_FILES["image"]["name"]) {
         $file_name = $_FILES["image"]["name"];
         $file_size = $_FILES["image"]["size"];
@@ -44,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               $image = mysqli_real_escape_string($conn, $file_name);
 
               // Update data in the database with image
-              $sql = "UPDATE movie SET name='$name', description='$description', price='$price', time='$time', image='$image' WHERE id=$id";
+              $sql = "UPDATE movie SET name='$name', description='$description', price='$price', duration='$duration', reldate='$relyear', director='$director', actor='$actor', fshow='$fshow', sshow='$sshow', tshow='$tshow', image='$image' WHERE id=$id";
               $result = $conn->query($sql);
 
               if ($result) {
@@ -64,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
       } else {
         // Update data in the database without image
-        $sql = "UPDATE movie SET name='$name', description='$description', price='$price', time='$time' WHERE id=$id";
+        $sql = "UPDATE movie SET name='$name', description='$description', price='$price', duration='$duration', relyear='$relyear', director='$director', actor='$actor', fshow='$fshow', sshow='$sshow', tshow='$tshow' WHERE id=$id";
         $result = $conn->query($sql);
 
         if ($result) {
@@ -81,14 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 }
 ?>
-<?php
-session_start();
-if(!isset(  $_SESSION['aname'] ))
-{
-    header("location:../../admin/alogin.php");
-}
 
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -144,9 +149,24 @@ if(!isset(  $_SESSION['aname'] ))
       <textarea name="description" id="description" required><?php echo $description; ?></textarea>
       <label for="price">Price:</label>
       <input type="text" name="price" id="price" value="<?php echo $price; ?>" required>
-      <label for="time">Time</label>
-      <input type="time" name="time" id="time" value="<?php echo $time; ?>" required><br><br>
-     
+      <label for="duration"> Movie Duration</label>
+      <input type="text" id="duration" name="duration" value="<?php echo $duration; ?>" required>
+
+      <label for="relyear"> Release Year</label>
+      <input type="text" id="relyear" name="relyear" value="<?php echo $relyear; ?>" required>
+
+      <label for="director">Director:</label>
+      <input type="text" id="director" name="director" value="<?php echo $director; ?>" required>
+      <label for="actor">Actors:</label>
+      <input type="text" id="actor" name="actor" value="<?php echo $actor; ?>" required>
+      <label for="time">First Show</label>
+      <input type="time" id="fshow" name="fshow" value="<?php echo $fshow; ?>" required>
+      <label for="time">Second Show</label>
+      <input type="time" id="sshow" name="sshow" value="<?php echo $sshow; ?>" required>
+      <label for="time">Third Show</label>
+      <input type="time" id="tshow" name="tshow" value="<?php echo $tshow; ?>" required>
+      <br>
+      <br>
       <label for="image">Movie Poster Image:</label>
       <input type="file" id="image" name="image"><br> 
       <input type="submit" name="update" value="Update">
