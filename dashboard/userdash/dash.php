@@ -163,9 +163,11 @@ if(!isset( $_SESSION['uid']))
  
 }
 ?>
+
+
+
+
+
     <!-- Add more movie cards here -->
   </div> 
-  <?php
-include('../footer.php');
-?>
 
