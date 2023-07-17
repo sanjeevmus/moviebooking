@@ -66,7 +66,13 @@ if(!isset(  $_SESSION['aemail'] ))
     <th>Movie Name</th>
     <th>Description</th>
     <th>Price</th>
-    <th>TIME</th>
+    <th>Duration</th>
+    <th>Release Year</th>
+    <th>Director</th>
+    <th>Actor</th>
+    <th>First Show</th>
+    <th>Second Show</th>
+    <th>Third Show</th>
     <th>Image</th>
     <th>Action</th>
   </tr>
@@ -87,7 +93,14 @@ if(!isset(  $_SESSION['aemail'] ))
       $description = $row['description'];
       $price = $row['price'];
       $image = $row['image'];
-      $time = $row['time'];
+      $duration = $row['duration'];
+      $relyear = $row['relyear'];
+      $director = $row['director'];
+      $actor = $row['actor'];
+      $fshow = $row['fshow'];
+      $sshow = $row['sshow'];
+      $tshow = $row['tshow'];
+
 
       echo "
       <tr>
@@ -95,7 +108,13 @@ if(!isset(  $_SESSION['aemail'] ))
         <td>$name</td>
         <td>$description</td>
         <td>$price</td>
-        <td>$time</td>
+        <td>$duration</td>
+        <td>$relyear</td>
+        <td>$director</td>
+        <td>$actor</td>
+        <td>$fshow</td>
+        <td>$sshow</td>
+        <td>$tshow</td>
         <td ><img src='../../images/$image' style='width: 110px; height: 50px' alt='Movie Poster'></td>
         <td>
           <form action='edit.php' method='POST'>
@@ -111,7 +130,7 @@ if(!isset(  $_SESSION['aemail'] ))
       ";
     }
   } else {
-    echo "<tr><td colspan='6'>No movies found</td></tr>";
+    echo "<tr><td colspan='13'>No movies found</td></tr>";
   }
 
   $conn->close();

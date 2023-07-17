@@ -18,10 +18,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?><?php
 session_start();
-if(!isset(  $_SESSION['aname'] ))
+if(!isset(  $_SESSION['aemail'] ))
 {
     header("location:../../admin/alogin.php");
 }
 
 ?>
-<a href=""

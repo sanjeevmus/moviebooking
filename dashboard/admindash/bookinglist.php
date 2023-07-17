@@ -4,7 +4,7 @@ include('../admindash/aheader.php');
 ?>
 <?php
 session_start();
-if(!isset(  $_SESSION['aname'] ))
+if(!isset(  $_SESSION['aemail'] ))
 {
     header("location:../../admin/alogin.php");
 }
@@ -45,7 +45,7 @@ if(!isset(  $_SESSION['aname'] ))
     <th>Theater Name</th>
     <th>User Id</th>
     <th>User Name</th>
-    <th>time</th>
+    <th>Duration</th>
   </tr>
 
   <?php
@@ -55,7 +55,7 @@ if(!isset(  $_SESSION['aname'] ))
   }
 
   $sql = "SELECT bookings.bid AS bid, movie.id AS mid, movie.name AS mname, 
-          user.uid AS uid, user.uname AS uname, bookings.tname, bookings.time
+          user.uid AS uid, user.uname AS uname, bookings.tname, bookings.duration
           FROM bookings
           INNER JOIN movie ON bookings.mid = movie.id
           INNER JOIN user ON bookings.uid = user.uid";
@@ -70,7 +70,7 @@ if(!isset(  $_SESSION['aname'] ))
       $tname = $row['tname'];
       $mname = $row['mname'];
       $uid = $row['uid'];
-      $time = $row['time'];
+      $duration = $row['duration'];
       $sn++;
 
       echo "
@@ -80,7 +80,7 @@ if(!isset(  $_SESSION['aname'] ))
         <td>$tname</td>
         <td>$uid</td>
         <td>$uname</td>
-        <td>$time</td>
+        <td>$duration</td>
         <td>
         </td>
       </tr>

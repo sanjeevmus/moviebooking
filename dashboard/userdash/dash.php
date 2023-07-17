@@ -11,11 +11,6 @@ if(!isset( $_SESSION['uid']))
 
 
 <style>
-    h2{
-        text-align: center;
-        font-weight: 500;
-        /* font-family: cursive; */
-    }
 .dashboard-container {
   max-width: 800px;
   margin: 0 auto;
@@ -23,8 +18,8 @@ if(!isset( $_SESSION['uid']))
 
 .horizontal-menu {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: end;
+  align-items:flex-end;
   margin-bottom: 20px;
 }
 
@@ -33,6 +28,7 @@ if(!isset( $_SESSION['uid']))
   color: #333;
   font-weight: bold;
   margin-right: 10px;
+  width: 100%;
 }
 
 .search {
@@ -43,6 +39,7 @@ if(!isset( $_SESSION['uid']))
   padding: 6px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  margin-top: 20px;
 }
 
 #search-button {
@@ -53,6 +50,7 @@ if(!isset( $_SESSION['uid']))
   border-radius: 4px;
   cursor: pointer;
   margin-left: 10px;
+  margin-top: 20px;
 }
 
 .movies-container {
@@ -70,9 +68,10 @@ if(!isset( $_SESSION['uid']))
 }
 
 .movie-details {
-  margin-top: 10px;
+    margin-top: 10px;
+    font-family: cursive;
+    font-style: oblique;
 }
-
 .movie-name {
   font-weight: bold;
   margin-bottom: 5px;
@@ -94,6 +93,11 @@ if(!isset( $_SESSION['uid']))
 .book{
   background-color: #4caf50;
 }
+.nowshowing{
+  font-size: larger;
+  padding-left: 100px;
+ 
+}
 </style>
 
 
@@ -105,13 +109,13 @@ if(!isset( $_SESSION['uid']))
 
 <div class="dashboard-container">
   <div class="horizontal-menu">
-    <a href="dash.php" id="now-showing-link">Now Showing</a>
+    <a href="dash.php" id="now-showing-link" class="nowshowing">Now Showing</a>
     <div class="search">
       <input type="text" id="search-input" name="search" placeholder="Search Movies">
       <button type="button" id="search-button">Search</button>
     </div>
   </div>
-  <h2><u>Now Showing</u></h2>
+  
 
             <?php
      $servername = "localhost";
@@ -130,7 +134,8 @@ if(!isset( $_SESSION['uid']))
         $name=$row['name'];
         $description=$row['description'];
         $price=$row['price'];
-        $time=$row['time'];
+        $duration=$row['duration'];
+        $director=$row['director'];
         $image=$row['image'];
 
 
@@ -143,21 +148,21 @@ if(!isset( $_SESSION['uid']))
     
       <img src='../../images/$image' alt=Movie Poster>
       <div class=movie-details>
-        movie title:<h5 class=movie-name>'$name'</h5>
+        Movie Title:<h5 class=movie-name>'$name'</h5>
        Description: <p class=movie-description>$description</p>
-       PRice: <p class=movie-price>$price</p>
-       Show Time <p class=movie-price>$time</p>
+       Price: <p class=movie-price>$price</p>
+       Movie Duration <p class=movie-duration>$duration</p>
+       Directed By: <p class=movie-duration>$director</p>
+
         <form action='test.php'  method='post'>
-    <input type='hidden' name='time' id='' value='$time'>
+    <input type='hidden' name='duration' id='' value='$duration'>
     <input type='hidden' name='mid' id='' value='$mid'>
     <input type='hidden' name='mname' id='' value='$name'>
     <input type='submit' name='book_now' id=' ' value='Book A Show'>
 </form>
+
       </div>
     </div>  
-    
-
-
         ";
       }
  
@@ -170,4 +175,6 @@ if(!isset( $_SESSION['uid']))
 
     <!-- Add more movie cards here -->
   </div> 
+  <?php include('../../footer.php'); ?>
+
 

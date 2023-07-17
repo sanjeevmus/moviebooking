@@ -11,14 +11,17 @@ if(!isset(  $_SESSION['aemail'] ))
 ?>
 <style>
   form {
-  width: 500px;
+  width: 30%;
   height: max-content;
   margin-top: 20px;
   padding: 20px;
   background-color: #f2f2f2;
-  border-radius: 5px;
+  border-radius: 15px;
   margin-left: 30%;
   margin-right: 30%;
+  margin-bottom: 20px;
+  font-family: cursive;
+  font-size:x-small;
   /* display: grid; */
   /* align-items: start; */
 }
@@ -74,17 +77,49 @@ input[type="submit"]:hover {
   
   <label for="price">Ticket Price:</label>
   <input type="number" id="price" name="price" required><br>
-  
+  <br>
+
+
   <label for="image">Movie Poster Image:</label>
   <input type="file" id="image" name="image" ><br>
 <br>
-  <label for="time"> Show Time</label>
-  <input type="time" id="time" name="time" required><br>
 
+
+  <label for="duration"> Movie Duration</label>
+  <input type="text" id="duration" name="duration" required><br>
+<br>
+
+
+  <label for="reldate"> Release Date</label>
+  <input type="text" id="reldate" name="reldate" required><br>
+<br>
+
+
+<label for="director">Director:</label>
+    <input type="text" id="director" name="director" required>
+<br>
+<br>
+    <label for="actor">Actors:</label>
+    <input type="text" id="actor" name="actor" required>
+    <br>
+<br>
+    <label for="time">First Show</label>
+    <input type="time" id="fshow" name="fshow" required>
+    <br>
+<br>
+    <label for="time">Second Show</label>
+    <input type="time" id="sshow" name="sshow" required>
+    <br>
+<br>
+    <label for="time">Third Show</label>
+    <input type="time" id="tshow" name="tshow" required>
+    <br>
 <br>
   <input type="submit" value="Add Movie" name="add">
 </form>
-
+<?php
+include ('../../footer.php');
+?>
 <?php
 $servername = "localhost";
 $username = "root";
@@ -101,7 +136,13 @@ if (isset($_POST['add'])) {
     $name = $_POST['name'];
     $description = $_POST['description'];
     $price = $_POST['price'];
-    $time = $_POST['time'];
+    $duration = $_POST['duration'];
+    $relyear = $_POST['relyear'];
+    $director = $_POST['director'];
+    $actor = $_POST['actor'];
+    $fshow = $_POST['fshow'];
+    $sshow = $_POST['sshow'];
+    $tshow = $_POST['tshow'];
 
     if ($_FILES["image"]["name"]) {
         $file_name = $_FILES["image"]["name"];
@@ -120,7 +161,7 @@ if (isset($_POST['add'])) {
                     $image = mysqli_real_escape_string($conn, $destination);
 
                     // Insert data into the database
-                    $sql = "INSERT INTO movie (name, description, price, image, time) VALUES ('$name', '$description', '$price', '$file_name', '$time')";
+                    $sql = "INSERT INTO movie (name, description, price, image, duration, relyear , director , actor, fshow, sshow, tshow) VALUES ('$name', '$description', '$price', '$file_name', '$duration', '$relyear', '$director', '$actor', '$fshow', '$sshow', '$tshow')";
                     $result = $conn->query($sql);
 
                     if ($result) {
@@ -141,7 +182,7 @@ if (isset($_POST['add'])) {
         }
     } else {
         // Insert data into the database without an image
-        $sql = "INSERT INTO movie (name, description, price, time) VALUES ('$name', '$description', '$price', '$time')";
+        $sql = "INSERT INTO movie (name, description, price, duration, relyear, director, Actor, fshow, sshow, tshow) VALUES ('$name', '$description', '$price', '$duration, '$relyear', '$director', '$Actor', '$fshow', '$sshow', '$tshow')";
         $result = $conn->query($sql);
 
         if ($result) {

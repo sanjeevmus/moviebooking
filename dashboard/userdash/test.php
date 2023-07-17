@@ -13,10 +13,10 @@ if (isset($_POST['book_now'])) {
 
     $mid = $_POST['mid'];
     $name = $_POST['mname'];
-    $time = $_POST['time'];
+    $duration = $_POST['duration'];
 
     // Prepare the SQL statement
-    $sql = "INSERT INTO bookings (mid, uid, time) VALUES ('$mid', '$uid','$time')";
+    $sql = "INSERT INTO bookings (mid, uid, duration) VALUES ('$mid', '$uid','$duration')";
     if ($conn->query($sql) === TRUE) {
         echo "Booking successful!";
     } else {
