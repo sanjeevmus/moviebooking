@@ -1,7 +1,4 @@
 <?php
-
-
-
 if(isset($_POST['signinBtn'])) {
     // Get the username and password from the form
     $aname = $_POST['aname'];
