@@ -47,7 +47,7 @@
     <div class="nav-wrapper">
         <div class="container">
             <div class="nav">
-                <a href="#" class="logo">
+                <a href="adash.php" class="logo">
                     MOVIE WORLD
                 </a>
 </div>

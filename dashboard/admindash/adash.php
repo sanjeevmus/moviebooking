@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset(  $_SESSION['aname'] ))
+if(!isset(  $_SESSION['aemail'] ))
 {
     header("location:../../admin/alogin.php");
 }
@@ -14,10 +14,11 @@ if(!isset(  $_SESSION['aname'] ))
   <title>Admin Dashboard</title>
   <link rel="stylesheet" type="text/css" href="adashboard.css">
 <style>
+  
   .content {
   margin: 20px;
   padding: 20px;
-  height: 100%;
+  height: 30rem;
   background-color:#f2f2f2;
   border: 1px solid #ddd;
   }
@@ -46,7 +47,11 @@ if(!isset(  $_SESSION['aname'] ))
   <div class="content">
     <p>Welcome to the admin dashboard. Here, you can manage various aspects of the movie ticket booking system.</p><br>
     <p>Let's Start to Manage the Admin Dashboard</p><br>
-    <!-- Add your dashboard content here -->
+    <br>
+
   </div>
+  <?php
+include('../../footer.php');
+?>
 </body>
 </html>

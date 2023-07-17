@@ -7,7 +7,7 @@ include('../admin/header.php');
         <form method="post" action="aloginbackend.php">
             <div class="input-group">
                 <div class="input-field">
-                    <input type="text" placeholder="Enter Your Name" name="aname" required><br>
+                    <input type="text" placeholder="Enter Your email" name="aemail" required><br>
                 </div>
                 <div class="input-field">
                     <input type="password" placeholder="Password" name="apassword" required><br>

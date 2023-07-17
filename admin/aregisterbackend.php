@@ -25,7 +25,6 @@ if(isset($_POST['signupBtn'])) {
 
     //inserting
     $sql = " INSERT INTO admin(aname, aemail, apassword, aphone) VALUES('$aname', '$aemail', '$apassword','$aphone')";
-
 if ($conn->query($sql) === true) {
         header ('location:alogin.php');
 } else {
