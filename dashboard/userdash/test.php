@@ -1,7 +1,6 @@
 <?php
 session_start();
 $uid = $_SESSION['uid'];
-
 if (isset($_POST['book_now'])) {
     $servername = "localhost";
     $username = "root";
@@ -18,7 +17,6 @@ if (isset($_POST['book_now'])) {
 
     // Prepare the SQL statement
     $sql = "INSERT INTO bookings (mid, uid, time) VALUES ('$mid', '$uid','$time')";
-
     if ($conn->query($sql) === TRUE) {
         echo "Booking successful!";
     } else {

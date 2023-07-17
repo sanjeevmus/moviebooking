@@ -147,7 +147,7 @@ if(!isset( $_SESSION['uid']))
        Description: <p class=movie-description>$description</p>
        PRice: <p class=movie-price>$price</p>
        Show Time <p class=movie-price>$time</p>
-        <form action='seat.php'  method='post'>
+        <form action='test.php'  method='post'>
     <input type='hidden' name='time' id='' value='$time'>
     <input type='hidden' name='mid' id='' value='$mid'>
     <input type='hidden' name='mname' id='' value='$name'>

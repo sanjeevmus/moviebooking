@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Movie Seat Booking</title>
+<?php
+include('header.php');
+?>
   <style>
-    /* Your CSS styles here */
     @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 
     * {
@@ -128,7 +122,6 @@
     }
   </style>
 </head>
-
 <body>
   <h1>Movie Seat Booking</h1>
   <form action="../userdash/test.php" method="POST">
@@ -221,7 +214,38 @@
 
   <button class="submit-btn" name="book_now" id="book_now">Submit</button>
   </form>
-  <script src="script.js"></script>
+  <script src="../userdash/script.js"></script>
 </body>
 
 </html>
+
+<?php
+// Check if the form was submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get data from the form
+    $name = $_POST["name"];
+    $seat_capacity = $_POST["seat_capacity"];
+    $location = $_POST["location"];
+    $address = $_POST["address"];
+
+    // Connect to the database (Replace DB_HOST, DB_USER, DB_PASSWORD, and DB_NAME with your credentials)
+    $conn = new mysqli("localhost", "root", "", "moviebooking");
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // SQL query to insert data into the "hall" table
+    $sql = "INSERT INTO hall (name, seat_capacity, location, address)
+            VALUES ('$name', $seat_capacity, '$location', '$address')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Data inserted successfully!";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $conn->close();
+}
+?>

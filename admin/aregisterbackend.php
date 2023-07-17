@@ -21,15 +21,12 @@ if(isset($_POST['signupBtn'])) {
     $aname = $_POST['aname'];
     $aemail = $_POST['aemail'];
     $apassword = $_POST['apassword'];
-    $acpassword = $_POST['acpassword'];
     $aphone = $_POST['aphone'];
 
     //inserting
     $sql = " INSERT INTO admin(aname, aemail, apassword, aphone) VALUES('$aname', '$aemail', '$apassword','$aphone')";
-if(!$apassword == $acpassword)
-{
-    echo"password is not same";
-}elseif ($conn->query($sql) === true) {
+
+if ($conn->query($sql) === true) {
         header ('location:alogin.php');
 } else {
         echo "Error: " .$conn->error;
