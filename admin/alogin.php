@@ -12,7 +12,7 @@ include('../admin/header.php');
                 <div class="input-field">
                     <input type="password" placeholder="Password" name="apassword" required><br>
                 </div>
-                <p>Forgot Password? <a href="Forgot.html">Click here!</a></p>
+                <p>Forgot Password? <a href="aforgot.php">Click here!</a></p>
                 <br>
                 <div class="SignUp-link">
                     <button type="submit" name="signinBtn">Sign In</button>

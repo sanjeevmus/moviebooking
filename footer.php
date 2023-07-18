@@ -4,8 +4,10 @@
 .footer {
   background-color: black; /* Footer background color */
   color: #fff; /* Text color for the footer */
-  padding: 20px; /* Padding around the footer content */
   font-family: cursive;
+  padding-left: 30px;
+  padding-right: 30px;
+
 }
 
 /* Style for the contact information and follow us sections */

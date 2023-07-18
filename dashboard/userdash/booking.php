@@ -47,6 +47,7 @@
 
     .booking-form {
         margin-top: 50px;
+        margin-bottom: 50px;
     }
 
     .booking-form h2 {
@@ -195,7 +196,7 @@
             <input type="hidden" name="showtime" value="">
 
             <br>
-            Number of Seats: <input type="number" name="seats" id="seats" required>
+            Number of Seats: <input type="number" name="seats" id="seats" required><br><br>
             <input type="submit" name="bookSeats" value="Book Seats">
         </form>
     </div>
