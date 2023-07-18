@@ -22,9 +22,10 @@ if(!isset(  $_SESSION['aemail'] ))
 
   .edit-delete-table {
     width: 100%;
-    border-collapse: collapse;
     margin-bottom: 20px;
     margin-top: 20px;
+    height: 25rem;
+    font-family: cursive;
   }
 
   .edit-delete-table th,
@@ -36,6 +37,7 @@ if(!isset(  $_SESSION['aemail'] ))
 
   .edit-delete-table th {
     background-color: #f2f2f2;
+    color: black;
   }
 
   .edit-delete-table td button {
@@ -135,4 +137,7 @@ if(!isset(  $_SESSION['aemail'] ))
 
   $conn->close();
   ?>
+  
 </table>
+<?php include('../../footer.php'); ?>
+

@@ -5,20 +5,21 @@
   background-color: black; /* Footer background color */
   color: #fff; /* Text color for the footer */
   padding: 20px; /* Padding around the footer content */
-
+  font-family: cursive;
 }
 
 /* Style for the contact information and follow us sections */
 .container-content {
   display: flex; /* Use flexbox to align elements in a row */
   /* Allow elements to wrap to a new line if needed */
-  justify-content:space-between; /* Space out the elements on the same line */
+  justify-content:space-between;/* Space out the elements on the same line */
+  margin-bottom: 5px;
 }
 
 .container-content .contents,
 .container-content .details {
-  flex: 1; /* Allow both sections to take equal space on the same line */
-  margin-bottom: 20px; /* Add some space between sections */
+ /* Allow both sections to take equal space on the same line */
+  margin-bottom: 10px; /* Add some space between sections */
 }
 
 .container-content .contents h4,

@@ -17,7 +17,8 @@
     body {
       background-color: #242333;
       color: #fff;
-      display: grid;
+      display: flex;
+      flex-direction: column;
       place-items: center;
       height: 100vh;
       font-family: 'Lato', sans-serif;
@@ -58,6 +59,8 @@
       padding: 18px;
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
+      transition: background-color 0.2s ease-in-out;
+      display: flex;
     }
 
     .seat.selected {
@@ -65,7 +68,7 @@
     }
 
     .seat.occupied {
-      background-color: #fff;
+      background-color: red;
     }
 
     .seat:not(.occupied):hover {
@@ -131,7 +134,7 @@
 
 <body>
   <h1>Movie Seat Booking</h1>
-  <form action="../userdash/test.php" method="POST">
+  <form action="test.php" method="POST">
   <div class="movie-container">
     <label for="movie">Pick a movie:</label>
     <select id="movie" name="movie">
@@ -146,73 +149,77 @@
         $id = $movie['id'];
         $name = $movie['name'];
         $price = $movie['price'];
+        $duration = $movie['duration'];
         echo "<option value=\"$price\">$name (Rs$price)</option>";
       }
       ?>
     </select>
   </div>
-
+  <ul class="showcase">
+    <li>
+      <div class="seat"></div>
+      <small>Available</small>
+    </li>
+    <li>
+      <div class="seat selected"></div>
+      <small>Selected</small>
+    </li>
+    <li>
+      <div class="seat occupied"></div>
+      <small>Reserved</small>
+    </li>
+  </ul>
   <div class="container">
     <div class="screen"></div>
     <div class="row">
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
+       <div class="seat" value="1">1</div>
+      <div class="seat" value="2">2</div>
+      <div class="seat" value="3">3</div>
+      <div class="seat" value="4">4</div>
+      <div class="seat" value="5">5</div>
+      <div class="seat" value="6">6</div>
+      <div class="seat" value="7">7</div>
+      <div class="seat" value="8">8</div>
     </div>
     <div class="row">
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
+      <div class="seat" value="9">9</div>
+      <div class="seat" value="10">10</div>
+      <div class="seat" value="11">11</div>
+      <div class="seat" value="12">12</div>
+      <div class="seat" value="13">13</div>
+      <div class="seat" value="14">14</div>
+      <div class="seat" value="15">15</div>
+      <div class="seat" value="16">16</div>
     </div>
     <div class="row">
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
+      <div class="seat" value="17">17</div>
+      <div class="seat" value="18">18</div>
+      <div class="seat" value="19">19</div>
+      <div class="seat" value="20">20</div>
+      <div class="seat" value="21">21</div>
+      <div class="seat" value="22">22</div>
+      <div class="seat" value="23">23</div>
+      <div class="seat" value="24">24</div>
     </div>
     <div class="row">
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
+    <div class="seat" value="25">25</div>
+      <div class="seat" value="26">26</div>
+      <div class="seat" value="27">27</div>
+      <div class="seat" value="28">28</div>
+      <div class="seat" value="29">29</div>
+      <div class="seat" value="30">30</div>
+      <div class="seat" value="31">31</div>
+      <div class="seat" value="32">32</div>
     </div>
     <div class="row">
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-    </div>
-    <div class="row">
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
-      <div class="seat"></div>
+    <div class="seat" value="33">33</div>
+      <div class="seat" value="34">34</div>
+      <div class="seat" value="35">35</div>
+      <div class="seat" value="36">36</div>
+      <div class="seat" value="37">37</div>
+      <div class="seat" value="38">38</div>
+      <div class="seat" value="39">39</div>
+      <div class="seat" value="40">40</div>
     </div>
   </div>
   <p class="text">

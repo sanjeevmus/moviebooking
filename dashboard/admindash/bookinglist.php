@@ -19,9 +19,9 @@ if(!isset(  $_SESSION['aemail'] ))
 
   .edit-delete-table {
     width: 100%;
-    border-collapse: collapse;
     margin-bottom: 20px;
     margin-top: 20px;
+    height: 23rem;
   }
 
   .edit-delete-table th,
@@ -93,3 +93,4 @@ if(!isset(  $_SESSION['aemail'] ))
   $conn->close();
   ?>
 </table>
+<?php include('../../footer.php'); ?>

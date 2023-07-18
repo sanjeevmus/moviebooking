@@ -10,16 +10,18 @@ include('../admindash/aheader.php')
 
   .edit-delete-table {
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+    height: 100%;
+    margin-bottom: 250px;
     margin-top: 20px;
+    font-family: cursive;
   }
 
   .edit-delete-table th,
   .edit-delete-table td {
     padding: 8px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    padding-bottom: 30px;
+   
   }
 
   .edit-delete-table th {
@@ -85,6 +87,7 @@ include('../admindash/aheader.php')
 
   $conn->close();
   ?>
+  </table>
   <?php
 session_start();
 if(!isset(  $_SESSION['aemail'] ))
@@ -93,9 +96,9 @@ if(!isset(  $_SESSION['aemail'] ))
 }
 
 ?>
-</table>
 
 
+<?php include('../../footer.php'); ?>
 </body>
 </html>
 
