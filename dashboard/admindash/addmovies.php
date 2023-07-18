@@ -189,7 +189,7 @@ if (isset($_POST['add'])) {
             echo '<script type="text/javascript"> alert("Movie added successfully."); </script>';
         } else {
             echo '<script type="text/javascript"> alert("Error: ' . $conn->error . '"); </script>';
-        }
+          }
     }
 }
 ?>

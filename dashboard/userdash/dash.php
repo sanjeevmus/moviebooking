@@ -8,8 +8,6 @@ if(!isset( $_SESSION['uid']))
 }
 
 ?>
-
-
 <style>
 .dashboard-container {
   max-width: 800px;
@@ -54,8 +52,8 @@ if(!isset( $_SESSION['uid']))
 }
 
 .movies-container {
- width: 25%;
- display: flex;
+  width: 25%;
+  display: inline-table;
 }
 
 .movie-card {
@@ -63,15 +61,14 @@ if(!isset( $_SESSION['uid']))
   padding: 10px;
   width: 250px;
   margin: 25px;
-
-
 }
 
 .movie-details {
-    margin-top: 10px;
-    font-family: cursive;
-    font-style: oblique;
+  margin-top: 10px;
+  font-family: cursive;
+  font-style: oblique;
 }
+
 .movie-name {
   font-weight: bold;
   margin-bottom: 5px;
@@ -86,26 +83,21 @@ if(!isset( $_SESSION['uid']))
   margin-bottom: 20px;
   /* font-family: cursive; */
 }
-.movie-card img{
-  height:200px;
+
+.movie-card img {
+  height: 200px;
   width: 250px;
 }
-.book{
+
+.book {
   background-color: #4caf50;
 }
-.nowshowing{
+
+.nowshowing {
   font-size: larger;
   padding-left: 100px;
- 
 }
 </style>
-
-
-
-
-
-
-
 
 <div class="dashboard-container">
   <div class="horizontal-menu">
@@ -116,7 +108,6 @@ if(!isset( $_SESSION['uid']))
     </div>
   </div>
   
-
             <?php
      $servername = "localhost";
      $username = "root";
@@ -143,38 +134,34 @@ if(!isset( $_SESSION['uid']))
 
         echo"
         
-        <div class=movies-container>
-    <div class=movie-card>
+  <div class=movies-container>
+      <div class=movie-card>
     
-      <img src='../../images/$image' alt=Movie Poster>
-      <div class=movie-details>
-        Movie Title:<h5 class=movie-name>'$name'</h5>
-       Description: <p class=movie-description>$description</p>
-       Price: <p class=movie-price>$price</p>
-       Movie Duration <p class=movie-duration>$duration</p>
-       Directed By: <p class=movie-duration>$director</p>
+        <img src='../../images/$image' alt=Movie Poster>
+          <div class=movie-details>
+             Movie Title:<h5 class=movie-name>'$name'</h5>
+            Description: <p class=movie-description>$description</p>
+            Price: <p class=movie-price>$price</p>
+            Movie Duration <p class=movie-duration>$duration</p>
+            Directed By: <p class=movie-duration>$director</p>
 
-        <form action='test.php'  method='post'>
-    <input type='hidden' name='duration' id='' value='$duration'>
-    <input type='hidden' name='mid' id='' value='$mid'>
-    <input type='hidden' name='mname' id='' value='$name'>
-    <input type='submit' name='book_now' id=' ' value='Book A Show'>
-</form>
+            <form action='booking.php'  method='post'>
+              <input type='hidden' name='duration' id='' value='$duration'>
+              <input type='hidden' name='mid' id='' value='$mid'>
+              <input type='hidden' name='mname' id='' value='$name'>
+              <input type='submit' name='book_now' id=' ' value='Book A Show'>
+            </form>
 
-      </div>
-    </div>  
+        </div>
+      </div> 
+  </div>
+  
         ";
       }
- 
 }
 ?>
-
-
-
-
-
-    <!-- Add more movie cards here -->
-  </div> 
+</div>
+  
   <?php include('../../footer.php'); ?>
 
 

@@ -66,9 +66,9 @@
         <div class="details">
             <h4 class="follow">Follow Us</h4>
             <ul class="flex space-x-4">
-                <li><a href="https://www.facebook.com/example">Facebook</a></li>
-                <li><a href="https://www.instagram.com/example">Instagram</a></li>
-                <li><a href="mailto:example@gmail.com">Gmail</a></li>
+                <li><a href="https://www.facebook.com/sanjeevmusyakhw/">Facebook</a></li>
+                <li><a href="https://instagram.com/sanjeev_musyakhwo?igshid=NGExMmI2YTkyZg==">Instagram</a></li>
+                <li><a href="mailto:sanjeevsuraz12@gmail.com">Gmail</a></li>
                 <li><a href="https://www.twitter.com/example">Twitter</a></li>
             </ul>
         </div>

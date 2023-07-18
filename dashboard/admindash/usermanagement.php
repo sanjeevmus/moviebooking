@@ -87,7 +87,7 @@ include('../admindash/aheader.php')
   ?>
   <?php
 session_start();
-if(!isset(  $_SESSION['aname'] ))
+if(!isset(  $_SESSION['aemail'] ))
 {
     header("location:../../admin/alogin.php");
 }

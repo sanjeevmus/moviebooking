@@ -80,6 +80,7 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-bottom: 20px;
   }
 </style>
 
@@ -105,26 +106,26 @@ $result = $conn->query($sql);
 if ($result && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $name = $row['name'];
+        $description = $row['description'];
         $duration = $row['duration'];
-        $reldate = $row['reldate'];
+        $relyear= $row['relyear'];
         $director = $row['director'];
         $actor = $row['actor'];
         $image = $row['image'];
-        $fdate = $row['fdate'];
-        $sdate = $row['sdate'];
         $fshow = $row['fshow'];
         $sshow = $row['sshow'];
         $tshow = $row['tshow'];
 
         echo "
         <div class='movie-card'>
-            <img src='images/$image' alt='Movie Poster'>
+            <img src='../../images/$image' alt='Movie Poster'>
             <div class='movie-details'>
                 <h1 class='movie-name'>$name</h1>
                 <p><span>Duration:</span> $duration</p>
-                <p><span>Release Date:</span> $reldate</p>
+                <p><span>Release Date:</span> $relyear</p>
                 <p><span>Director:</span> $director</p>
                 <p><span>Actor:</span> $actor</p>
+                <p><span>Description:</span> $description</p>
             </div>
         </div>";
     }
@@ -136,7 +137,7 @@ $conn->close();
 ?>
 
 <div class="booking-form">
-    <h2>Select Date and Time</h2>
+    <h2>Select Showtime</h2>
 
     <?php
 if (isset($_SESSION['updatedMovieId']) && isset($_SESSION['updatedMovieName']) && isset($_SESSION['updatedShowtime'])) {
@@ -150,36 +151,17 @@ if (isset($_SESSION['updatedMovieId']) && isset($_SESSION['updatedMovieName']) &
     $conn2 = new mysqli($servername, $username, $password, $dbname); // New database connection
 
     // Fetch the showtimes from the database for the selected movie
-    $sql2 = "SELECT fdate, sdate, fshow, sshow, tshow FROM movie WHERE id = $mid";
+    $sql2 = "SELECT fshow, sshow, tshow FROM movie WHERE id = $mid";
     $result2 = $conn2->query($sql2);
 
     if ($result2 && $result2->num_rows > 0) {
-        echo "<label for='showdate' class='block mb-2 text-sm'>Select Show Date:</label>";
-        echo "<select name='showdate' id='showdate' required class='block w-full border border-gray-300 rounded py-2 px-3 mb-4 focus:outline-none focus:ring focus:border-blue-500 text-sm'>";
+        echo "<label for='showtime' class='block mb-2 text-sm'>Select Showtime:</label>";
+        echo "<select name='showtime' id='showtime' required class='block w-full border border-gray-300 rounded py-2 px-3 mb-4 focus:outline-none focus:ring focus:border-blue-500 text-sm'>";
 
         while ($row2 = $result2->fetch_assoc()) {
-            $fdate = $row2['fdate'];
-            $sdate = $row2['sdate'];
-
-            echo "<option value='$fdate'>$fdate</option>";
-            echo "<option value='$sdate'>$sdate</option>";
-        }
-
-        echo "</select>";
-    }
-
-    // Fetch the showtimes from the database for the selected movie
-    $sql3 = "SELECT fdate, sdate, fshow, sshow, tshow FROM movie WHERE id = $mid";
-    $result3 = $conn2->query($sql3);
-
-    if ($result3 && $result3->num_rows > 0) {
-        echo "<label for='showtime' class='block mb-2 text-sm'>Select Showtime:</label>";
-        echo "<select name='showtime' id='showtime' required class='block w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring focus:border-blue-500 text-sm'>";
-
-        while ($row3 = $result3->fetch_assoc()) {
-            $fshow = $row3['fshow'];
-            $sshow = $row3['sshow'];
-            $tshow = $row3['tshow'];
+            $fshow = $row2['fshow'];
+            $sshow = $row2['sshow'];
+            $tshow = $row2['tshow'];
 
             echo "<option value='$fshow'>$fshow</option>";
             echo "<option value='$sshow'>$sshow</option>";
@@ -193,11 +175,11 @@ if (isset($_SESSION['updatedMovieId']) && isset($_SESSION['updatedMovieName']) &
 }
 ?>
 
-<button type="submit" onclick="location.href='bookticket.php'">Book Now</button>
+<button type="submit" onclick="location.href='seat.php'">Book Now</button>
 
     </form>
 </div>
 
 <?php 
-include('footer.php'); 
+include('../../footer.php'); 
 ?>
