@@ -75,6 +75,8 @@ if(!isset(  $_SESSION['aemail'] ))
     <th>First Show</th>
     <th>Second Show</th>
     <th>Third Show</th>
+    <th>First Show Date</th>
+    <th>Second Show Date</th>
     <th>Image</th>
     <th>Action</th>
   </tr>
@@ -102,6 +104,8 @@ if(!isset(  $_SESSION['aemail'] ))
       $fshow = $row['fshow'];
       $sshow = $row['sshow'];
       $tshow = $row['tshow'];
+      $fdate = $row['fdate'];
+      $sdate = $row['sdate'];
 
 
       echo "
@@ -117,6 +121,8 @@ if(!isset(  $_SESSION['aemail'] ))
         <td>$fshow</td>
         <td>$sshow</td>
         <td>$tshow</td>
+        <td>$fdate</td>
+        <td>$sdate</td>
         <td ><img src='../../images/$image' style='width: 110px; height: 50px' alt='Movie Poster'></td>
         <td>
           <form action='edit.php' method='POST'>

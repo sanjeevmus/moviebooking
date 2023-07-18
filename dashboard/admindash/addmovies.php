@@ -115,6 +115,14 @@ input[type="submit"]:hover {
     <input type="time" id="tshow" name="tshow" required>
     <br>
 <br>
+<label for="date">First Show Date</label>
+    <input type="date" id="fdate" name="fdate" required>
+    <br>
+<br>
+<label for="date">Second Show Date</label>
+    <input type="date" id="sdate" name="sdate" required>
+    <br>
+<br>
   <input type="submit" value="Add Movie" name="add">
 </form>
 <?php
@@ -143,6 +151,9 @@ if (isset($_POST['add'])) {
     $fshow = $_POST['fshow'];
     $sshow = $_POST['sshow'];
     $tshow = $_POST['tshow'];
+    $fdate = $_POST['fdate'];
+    $sdate = $_POST['sdate'];
+
 
     if ($_FILES["image"]["name"]) {
         $file_name = $_FILES["image"]["name"];
@@ -161,7 +172,7 @@ if (isset($_POST['add'])) {
                     $image = mysqli_real_escape_string($conn, $destination);
 
                     // Insert data into the database
-                    $sql = "INSERT INTO movie (name, description, price, image, duration, relyear , director , actor, fshow, sshow, tshow) VALUES ('$name', '$description', '$price', '$file_name', '$duration', '$relyear', '$director', '$actor', '$fshow', '$sshow', '$tshow')";
+                    $sql = "INSERT INTO movie (name, description, price, image, duration, relyear , director , actor, fshow, sshow, tshow, fdate, sdate) VALUES ('$name', '$description', '$price', '$file_name', '$duration', '$relyear', '$director', '$actor', '$fshow', '$sshow', '$tshow', '$fdate', '$sdate')";
                     $result = $conn->query($sql);
 
                     if ($result) {
@@ -182,7 +193,7 @@ if (isset($_POST['add'])) {
         }
     } else {
         // Insert data into the database without an image
-        $sql = "INSERT INTO movie (name, description, price, duration, relyear, director, Actor, fshow, sshow, tshow) VALUES ('$name', '$description', '$price', '$duration, '$relyear', '$director', '$Actor', '$fshow', '$sshow', '$tshow')";
+        $sql = "INSERT INTO movie (name, description, price, duration, relyear, director, Actor, fshow, sshow, tshow, fdate, sdate) VALUES ('$name', '$description', '$price', '$duration, '$relyear', '$director', '$Actor', '$fshow', '$sshow', '$tshow','$fdate', '$sdate')";
         $result = $conn->query($sql);
 
         if ($result) {

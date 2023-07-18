@@ -24,6 +24,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fshow = $row['fshow'];
     $sshow = $row['sshow'];
     $tshow = $row['tshow'];
+    $fdate = $row['fdate'];
+    $sdate = $row['sdate'];
+    
     $image = $row['image'];
 
     if (isset($_POST["update"])) {
@@ -38,6 +41,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $fshow = $_POST["fshow"];
       $sshow = $_POST["sshow"];
       $tshow = $_POST["tshow"];
+      $fdate = $_POST["fdate"];
+      $sdate = $_POST["sdate"];
+
 
       if ($_FILES["image"]["name"]) {
         $file_name = $_FILES["image"]["name"];
@@ -56,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               $image = mysqli_real_escape_string($conn, $file_name);
 
               // Update data in the database with image
-              $sql = "UPDATE movie SET name='$name', description='$description', price='$price', duration='$duration', reldate='$relyear', director='$director', actor='$actor', fshow='$fshow', sshow='$sshow', tshow='$tshow', image='$image' WHERE id=$id";
+              $sql = "UPDATE movie SET name='$name', description='$description', price='$price', duration='$duration', reldate='$relyear', director='$director', actor='$actor', fshow='$fshow', sshow='$sshow', tshow='$tshow', fdate='$fdate,  sdate='$sdate', 'image='$image' WHERE id=$id";
               $result = $conn->query($sql);
 
               if ($result) {
@@ -76,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
       } else {
         // Update data in the database without image
-        $sql = "UPDATE movie SET name='$name', description='$description', price='$price', duration='$duration', relyear='$relyear', director='$director', actor='$actor', fshow='$fshow', sshow='$sshow', tshow='$tshow' WHERE id=$id";
+        $sql = "UPDATE movie SET name='$name', description='$description', price='$price', duration='$duration', relyear='$relyear', director='$director', actor='$actor', fshow='$fshow', sshow='$sshow', tshow='$tshow', fdate='$fdate',  sdate='$sdate' WHERE id=$id";
         $result = $conn->query($sql);
 
         if ($result) {
@@ -165,6 +171,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <input type="time" id="sshow" name="sshow" value="<?php echo $sshow; ?>" required>
       <label for="time">Third Show</label>
       <input type="time" id="tshow" name="tshow" value="<?php echo $tshow; ?>" required>
+      <br>
+      <br>
+      <label for="date">First Show Date</label>
+      <input type="date" id="fdate" name="fdate" value="<?php echo $fdate ?>" required>
+      <br>
+      <br>
+      <label for="date">Second Show Date</label>
+      <input type="date" id="sdate" name="sdate"value="<?php echo $sdate; ?>" required>
       <br>
       <br>
       <label for="image">Movie Poster Image:</label>
