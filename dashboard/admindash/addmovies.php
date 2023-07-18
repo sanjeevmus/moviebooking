@@ -90,8 +90,8 @@ input[type="submit"]:hover {
 <br>
 
 
-  <label for="reldate"> Release Date</label>
-  <input type="text" id="reldate" name="reldate" required><br>
+  <label for="relyear"> Release Date</label>
+  <input type="text" id="relyear" name="relyear" required><br>
 <br>
 
 

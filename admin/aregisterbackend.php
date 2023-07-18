@@ -1,5 +1,4 @@
 <?php
-
 $servername = "localhost";
 $username = "root";
 $dbname = "moviebooking";
@@ -15,22 +14,67 @@ if ($conn->connect_error) {
 }
 
 // Process of submission
-if (isset($_POST['signupBtn'])) {
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Get data from the form
     $aname = $_POST['aname'];
     $aemail = $_POST['aemail'];
     $apassword = $_POST['apassword'];
     $aphone = $_POST['aphone'];
 
-    // Inserting data into the database
-    $sql = "INSERT INTO admin (aname, aemail, apassword, aphone) VALUES ('$aname', '$aemail', '$apassword', '$aphone')";
+    // Perform validation
+    $errors = [];
 
-    if ($conn->query($sql) === true) {
-        // Redirect to the login page after successful registration
-        header('Location: alogin.php');
+    // Name validation
+    if (empty($aname)) {
+        $errors["aname"] = "Name is required.";
+    }
+
+    // Email validation
+    if (empty($aemail)) {
+        $errors["aemail"] = "Email is required.";
+    } elseif (!filter_var($aemail, FILTER_VALIDATE_EMAIL)) {
+        $errors["aemail"] = "Invalid email format.";
+    }
+
+    // Password validation
+    if (empty($apassword)) {
+        $errors["apassword"] = "Password is required.";
+    }
+
+    // Phone validation
+    if (empty($aphone)) {
+        $errors["aphone"] = "Phone number is required.";
+    } elseif (!preg_match('/^\+9779[0-9]{9}$/', $aphone)) {
+        $errors["aphone"] = "Invalid phone number format. Phone number should start with +9779 and have 8 additional digits.";
+    }
+
+    // If there are validation errors, display them on the form
+    if (!empty($errors)) {
+        foreach ($errors as $error) {
+            echo $error . "<br>";
+        }
     } else {
-        echo "Error: " . $conn->error;
+        // Validation passed, proceed with registration
+
+        // Sanitize user inputs
+        $aname = mysqli_real_escape_string($conn, $aname);
+        $aemail = mysqli_real_escape_string($conn, $aemail);
+        // Hash the password for security (consider using password_hash() function)
+        $apassword = mysqli_real_escape_string($conn, $apassword);
+        $aphone = mysqli_real_escape_string($conn, $aphone);
+
+        // Insert user data into the database
+        $sql = "INSERT INTO admin (aname, aemail, apassword, aphone) VALUES ('$aname', '$aemail', '$apassword', '$aphone')";
+        if ($conn->query($sql) === TRUE) {
+            echo "Registration successful!";
+            // Redirect the user to the login page after successful registration
+            header("Location: alogin.php");
+            exit(); // Make sure to exit after redirection
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
     }
 }
-?>
 
+$conn->close();
+?>

@@ -1,5 +1,6 @@
-<?php include('../admin/header.php'); ?>
-
+<?php
+include('../admin/header.php');
+?>
 <div class="form">
     <div class="form-box">
         <h1 id="Title">Sign In</h1>
@@ -16,12 +17,15 @@
                 <div class="SignUp-link">
                     <button type="submit" name="signinBtn">Sign In</button>
                 </div>
-                <p>Don't have an account..<a href="aregister.php">Register</a></p>
+                <p> Don't have an account..<a href="aregister.php">Register</a></p>
             </div>
         </form>
     </div>
 </div>
 
-<?php include('../footer.php'); ?>
+<?php
+include('../footer.php');
+?>
 </body>
 </html>
+
