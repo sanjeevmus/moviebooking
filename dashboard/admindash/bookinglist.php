@@ -1,96 +1,87 @@
-<?php
-include('../admindash/aheader.php');
-
-?>
+<?php include('aheader.php'); ?>
 <?php
 session_start();
 if(!isset(  $_SESSION['aemail'] ))
 {
     header("location:../../admin/alogin.php");
 }
-
 ?>
 <style>
-  .h2 {
-    text-align: center;
+  .booking-list {
+    margin-top: 50px;
+  }
+
+  .booking-list h2 {
+    font-size: 24px;
     font-weight: bold;
-    font-family: cursive;
-  }
-
-  .edit-delete-table {
-    width: 100%;
     margin-bottom: 20px;
-    margin-top: 20px;
-    height: 23rem;
   }
 
-  .edit-delete-table th,
-  .edit-delete-table td {
-    padding: 8px;
+  .booking-list table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .booking-list th,
+  .booking-list td {
+    padding: 10px;
     text-align: left;
     border-bottom: 1px solid #ddd;
   }
 
-  .edit-delete-table th {
+  .booking-list th {
     background-color: #f2f2f2;
   }
 </style>
 
-<h2 class="h2">Booking List</h2>
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "moviebooking";
 
-<table class="edit-delete-table">
-  <tr>
-    <th>S.N</th>
-    <th>Movie Name</th>
-    <th>Theater Name</th>
-    <th>User Id</th>
-    <th>User Name</th>
-    <th>Duration</th>
-  </tr>
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-  <?php
-  $conn = new mysqli("localhost", "root", "", "moviebooking");
-  if ($conn->connect_error) {
-    die("Connection error: " . $conn->connect_error);
-  }
+// Fetch all the bookings
+$sql = "SELECT bookings.*, movie.name AS movie_name FROM bookings JOIN movie ON bookings.mid = mid";
+$result = $conn->query($sql);
 
-  $sql = "SELECT bookings.bid AS bid, movie.id AS mid, movie.name AS mname, 
-          user.uid AS uid, user.uname AS uname, bookings.tname, bookings.duration
-          FROM bookings
-          INNER JOIN movie ON bookings.mid = movie.id
-          INNER JOIN user ON bookings.uid = user.uid";
-  $result = $conn->query($sql);
+if ($result && $result->num_rows > 0) {
+    echo "<div class='booking-list'>";
+    echo "<h2>Booking List</h2>";
 
-  if ($result && $result->num_rows > 0) {
-    $sn = 0; // Initialize serial number
+    echo "<table>";
+    echo "<tr>
+            <th>Movie Name</th>
+            <th>Show Date</th>
+            <th>Show Time</th>
+            <th>Seats</th>
+          </tr>";
+
     while ($row = $result->fetch_assoc()) {
-      $bid = $row['bid'];
-      $mid = $row['mid'];
-      $uname = $row['uname'];
-      $tname = $row['tname'];
-      $mname = $row['mname'];
-      $uid = $row['uid'];
-      $duration = $row['duration'];
-      $sn++;
+       
+        $movieName = $row['movie_name'];
+        $showDate = $row['show_date'];
+        $showTime = $row['show_time'];
+        $seats = $row['seats'];
 
-      echo "
-      <tr>
-        <td>$sn</td>
-        <td>$mname</td>
-        <td>$tname</td>
-        <td>$uid</td>
-        <td>$uname</td>
-        <td>$duration</td>
-        <td>
-        </td>
-      </tr>
-      ";
+        echo "<tr>
+                
+                <td>$movieName</td>
+                <td>$showDate</td>
+                <td>$showTime</td>
+                <td>$seats</td>
+              </tr>";
     }
-  } else {
-    echo "<tr><td colspan='5'>No booking list found</td></tr>";
-  }
 
-  $conn->close();
-  ?>
-</table>
-<?php include('../../footer.php'); ?>
+    echo "</table>";
+    echo "</div>";
+} else {
+    echo "No bookings found.";
+}
+
+$conn->close();
+?>

@@ -10,7 +10,7 @@ if(isset($_SESSION['email'])) {
 
 if(isset($_POST['signinBtn'])) {
     // Get the username and password from the form
-    $uname = $_POST['unamez'];
+    $uname = $_POST['uname'];
     $password = $_POST['password'];
 
     $servername = "localhost";

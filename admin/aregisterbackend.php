@@ -10,7 +10,7 @@ $conn = new mysqli($servername, $username, "", $dbname);
 if ($conn->connect_error) {
     die('Connection failed: ' . $conn->connect_error);
 } else {
-    echo 'Connection success';
+    echo 'Connection failed';
 }
 
 // Process of submission
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             echo $error . "<br>";
         }
     } else {
-        // Validation passed, proceed with registration
+        // Validation passed, proceed with email exists check
 
         // Sanitize user inputs
         $aname = mysqli_real_escape_string($conn, $aname);
@@ -63,18 +63,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $apassword = mysqli_real_escape_string($conn, $apassword);
         $aphone = mysqli_real_escape_string($conn, $aphone);
 
-        // Insert user data into the database
-        $sql = "INSERT INTO admin (aname, aemail, apassword, aphone) VALUES ('$aname', '$aemail', '$apassword', '$aphone')";
-        if ($conn->query($sql) === TRUE) {
-            echo "Registration successful!";
-            // Redirect the user to the login page after successful registration
-            header("Location: alogin.php");
-            exit(); // Make sure to exit after redirection
+        // Checking if email exists
+        $check_email_query = "SELECT aemail FROM admin WHERE aemail = '$aemail' LIMIT 1";
+        $result = mysqli_query($conn, $check_email_query);
+
+        if (mysqli_num_rows($result) > 0) {
+            echo '<script type="text/javascript"> alert("Error: Email already registered ' . $conn->error . '"); </script>';
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            // Email doesn't exist, proceed with registration
+
+            // Insert user data into the database
+            $sql = "INSERT INTO admin (aname, aemail, apassword, aphone) VALUES ('$aname', '$aemail', '$apassword', '$aphone')";
+            if ($conn->query($sql) === TRUE) {
+                echo "Registration successful!";
+                // Redirect the user to the login page after successful registration
+                header("Location: alogin.php");
+                exit(); // Make sure to exit after redirection
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
         }
     }
 }
-
 $conn->close();
 ?>

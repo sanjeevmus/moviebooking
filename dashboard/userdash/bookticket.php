@@ -27,7 +27,7 @@ if ($result->num_rows === 0) {
 }
 
 // Insert the booking record
-$sqlInsert = "INSERT INTO booking (seats, movie_id, show_date, show_time) VALUES (?, ?, ?, ?)";
+$sqlInsert = "INSERT INTO bookings (seats, movie_id, show_date, show_time) VALUES (?, ?, ?, ?)";
 $stmt = $conn->prepare($sqlInsert);
 $stmt->bind_param("iiss", $seats, $mid, $fdate, $fshow);
 
