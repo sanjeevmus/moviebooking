@@ -14,6 +14,7 @@ include('../admindash/aheader.php')
     margin-bottom: 250px;
     margin-top: 20px;
     font-family: cursive;
+    border-spacing: 7px;
   }
 
   .edit-delete-table th,
@@ -21,11 +22,12 @@ include('../admindash/aheader.php')
     padding: 8px;
     text-align: left;
     padding-bottom: 30px;
+    border-bottom: 1px solid black;
    
   }
 
   .edit-delete-table th {
-    background-color: #f2f2f2;
+    background-color: aquamarine;
   }
 
   .edit-delete-table td button {
@@ -55,6 +57,7 @@ include('../admindash/aheader.php')
     <th>User Name</th>
     <th>Email</th>
     <th>Phone Number</th>
+    <th>Password</th>
   </tr>
   <?php
   $conn = new mysqli("localhost", "root", "", "moviebooking");
@@ -71,12 +74,15 @@ include('../admindash/aheader.php')
       $uname = $row['uname'];
       $email = $row['email'];
       $phone = $row['phone'];
+      $password = $row['password'];
+      
       echo "
       <tr>
         <td>$uid</td>
         <td>$uname</td>
         <td>$email</td>
         <td>$phone</td>
+        <td>$password</td>
         </td>
       </tr>
       ";

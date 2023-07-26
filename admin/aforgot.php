@@ -18,6 +18,7 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    height: 100%
 }
 
 .forgot-password-container h2 {
@@ -25,11 +26,14 @@
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
+    font-family: cursive;
 }
 
 .forgot-password-container p {
     text-align: center;
     margin-bottom: 20px;
+    font-family: cursive;
+
 }
 
 .forgot-password-container form {
@@ -40,6 +44,7 @@
 .forgot-password-container label {
     font-weight: bold;
     margin-bottom: 5px;
+    font-family: cursive;
 }
 
 .forgot-password-container input[type="email"] {
@@ -47,6 +52,7 @@
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-family: cursive;
 }
 
 .forgot-password-container button {
@@ -56,6 +62,7 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-family: cursive;
 }
 
 .forgot-password-container button:hover {

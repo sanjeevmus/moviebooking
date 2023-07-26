@@ -1,4 +1,5 @@
-<?php include('aheader.php'); ?>
+<?php include('../admindash/aheader.php'); ?>
+
 <?php
 session_start();
 if(!isset(  $_SESSION['aemail'] ))
@@ -6,82 +7,91 @@ if(!isset(  $_SESSION['aemail'] ))
     header("location:../../admin/alogin.php");
 }
 ?>
-<style>
-  .booking-list {
-    margin-top: 50px;
-  }
-
-  .booking-list h2 {
-    font-size: 24px;
+<link rel="stylesheet" href="c.css">
+ <style>
+  .h2 {
+    text-align: center;
     font-weight: bold;
-    margin-bottom: 20px;
+    font-family: cursive;
   }
 
-  .booking-list table {
+  .edit-delete-table {
     width: 100%;
     border-collapse: collapse;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    border-spacing: 7px;
   }
 
-  .booking-list th,
-  .booking-list td {
-    padding: 10px;
+  .edit-delete-table th,
+  .edit-delete-table td {
+    padding: 8px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid black;
   }
 
-  .booking-list th {
-    background-color: #f2f2f2;
+  .edit-delete-table th {
+    background-color: aquamarine;
   }
-</style>
+</style> 
 
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "moviebooking";
+<h2 class="h2">Booking List</h2>
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+<table class="edit-delete-table">
+  <tr>
+    <th>S.N</th>
+    <th>Movie Name</th>
+    <th>Theater Name</th>
+    <th>User Id</th>
+    <th>User Name</th>
+    <th>Show Date</th>
+    <th>Show Time</th>
+  </tr>
 
-// Fetch all the bookings
-$sql = "SELECT bookings.*, movie.name AS movie_name FROM bookings JOIN movie ON bookings.mid = mid";
-$result = $conn->query($sql);
+  <?php
+  $conn = new mysqli("localhost", "root", "", "moviebooking");
+  if ($conn->connect_error) {
+    die("Connection error: " . $conn->connect_error);
+  }
 
-if ($result && $result->num_rows > 0) {
-    echo "<div class='booking-list'>";
-    echo "<h2>Booking List</h2>";
+  $sql = "SELECT bookings.bid AS bid, movie.id AS mid, movie.name AS mname,
+          user.uid AS uid, user.uname AS uname, bookings.tname, bookings.show_time, bookings.show_date
+          FROM bookings
+          INNER JOIN movie ON bookings.mid = movie.id
+          INNER JOIN user ON bookings.uid = user.uid";
+  $result = $conn->query($sql);
 
-    echo "<table>";
-    echo "<tr>
-            <th>Movie Name</th>
-            <th>Show Date</th>
-            <th>Show Time</th>
-            <th>Seats</th>
-          </tr>";
-
+  if ($result && $result->num_rows > 0) {
+    $sn = 0; // Initialize serial number
     while ($row = $result->fetch_assoc()) {
-       
-        $movieName = $row['movie_name'];
-        $showDate = $row['show_date'];
-        $showTime = $row['show_time'];
-        $seats = $row['seats'];
+      $bid = $row['bid'];
+      $mid = $row['mid'];
+      $uname = $row['uname'];
+      $tname = $row['tname'];
+      $mname = $row['mname'];
+      $uid = $row['uid'];
+      $show_date = $row['show_date'];
+      $show_time = $row['show_time'];
+      $sn++;
 
-        echo "<tr>
-                
-                <td>$movieName</td>
-                <td>$showDate</td>
-                <td>$showTime</td>
-                <td>$seats</td>
-              </tr>";
+      echo "
+      <tr>
+        <td>$sn</td>
+        <td>$mname</td>
+        <td>$tname</td>
+        <td>$uid</td>
+        <td>$uname</td>
+        <td>$show_date</td>
+        <td>$show_time</td>
+      </tr>
+      ";
     }
+  } else {
+    echo "<tr><td colspan='7'>No booking list found</td></tr>";
+  }
 
-    echo "</table>";
-    echo "</div>";
-} else {
-    echo "No bookings found.";
-}
+  $conn->close();
+  ?>
+</table>
 
-$conn->close();
-?>
+<?php include('../../footer.php'); ?>

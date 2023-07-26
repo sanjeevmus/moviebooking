@@ -25,5 +25,6 @@
         <p>Your seats have been reserved successfully.</p>
         <p>Enjoy the movie!</p>
     </div>
+    <a href="dash.php">Home</a>
 </body>
 </html>

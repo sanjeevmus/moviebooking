@@ -11,28 +11,25 @@ if(!isset(  $_SESSION['aemail'] ))
 ?>
 <style>
   form {
-  width: 30%;
-  height: max-content;
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #f2f2f2;
-  border-radius: 15px;
-  margin-left: 30%;
-  margin-right: 30%;
-  margin-bottom: 20px;
-  font-family: cursive;
-  font-size:x-small;
-  /* display: grid; */
-  /* align-items: start; */
-}
+    width: 30%;
+    display: grid;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    margin-left: 30%;
+    margin-bottom: 20px;
+    font-family: cursive;
+    font-size: x-small;
+  }
 
-h2 {
+ h2 {
   text-align: center;
 }
 
 label {
   display: flex;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   font-weight: bold;
 }
 
@@ -63,9 +60,9 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   background-color: #45a049;
-}
+} 
 
-</style>
+</style> 
 <form action="addmovies.php" method="POST" enctype="multipart/form-data">
   <h2><u>Add Movie</u></h2>
 

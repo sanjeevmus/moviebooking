@@ -29,28 +29,6 @@ if(!isset( $_SESSION['uid']))
   width: 100%;
 }
 
-.search {
-  display: flex;
-}
-
-#search-input {
-  padding: 6px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-top: 20px;
-}
-
-#search-button {
-  padding: 6px 10px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-left: 10px;
-  margin-top: 20px;
-}
-
 .movies-container {
   width: 25%;
   display: inline-table;
@@ -95,17 +73,13 @@ if(!isset( $_SESSION['uid']))
 
 .nowshowing {
   font-size: larger;
-  padding-left: 100px;
+  text-align: center;
 }
 </style>
 
 <div class="dashboard-container">
   <div class="horizontal-menu">
     <a href="dash.php" id="now-showing-link" class="nowshowing">Now Showing</a>
-    <div class="search">
-      <input type="text" id="search-input" name="search" placeholder="Search Movies">
-      <button type="button" id="search-button">Search</button>
-    </div>
   </div>
   
             <?php

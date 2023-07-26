@@ -32,11 +32,11 @@ if(!isset(  $_SESSION['aemail'] ))
   .edit-delete-table td {
     padding: 8px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid black;
   }
 
   .edit-delete-table th {
-    background-color: #f2f2f2;
+    background-color:aquamarine;
     color: black;
   }
 

@@ -165,7 +165,7 @@
 
         if ($conn->query($sqlSeats) === TRUE) {
             // Redirect to a success page after successful booking
-            header("Location: booking-sucess.php");
+            header("Location: test.php");
             exit;
         } else {
             echo "<script> alert('Booking Failed: " . $conn->error . "');</script>";
