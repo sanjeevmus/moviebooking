@@ -41,7 +41,6 @@ if ($seats === null) {
 
 if ($stmt->execute()) {
     echo "Booking successful!";
-    header("location: seats.php");
 } else {
     echo "Booking failed: " . $stmt->error;
 }

@@ -39,13 +39,14 @@ if(!isset(  $_SESSION['aemail'] ))
 
 <table class="edit-delete-table">
   <tr>
-    <th>S.N</th>
-    <th>Movie Name</th>
-    <th>Theater Name</th>
-    <th>User Id</th>
-    <th>User Name</th>
+    <th>Name</th>
     <th>Show Date</th>
     <th>Show Time</th>
+    <th>Booking Date</th>
+    <th>Booking Time</th>
+    <th>Seats Booked</th>
+    <th>Seat Numbers</th>
+    <th>Movie Name</th>
   </tr>
 
   <?php
@@ -54,40 +55,37 @@ if(!isset(  $_SESSION['aemail'] ))
     die("Connection error: " . $conn->connect_error);
   }
 
-  $sql = "SELECT bookings.bid AS bid, movie.id AS mid, movie.name AS mname,
-          user.uid AS uid, user.uname AS uname, bookings.tname, bookings.show_time, bookings.show_date
-          FROM bookings
-          INNER JOIN movie ON bookings.mid = movie.id
-          INNER JOIN user ON bookings.uid = user.uid";
-  $result = $conn->query($sql);
+  $sql = "SELECT bookings.*, movie.name AS movie_name, GROUP_CONCAT(seat_id ORDER BY seat_id) AS seat_numbers, COUNT(*) AS num_seats_booked FROM bookings JOIN movie ON bookings.movie_id = movie.id GROUP BY booking_date, booking_time";
+$result = $conn->query($sql);
 
   if ($result && $result->num_rows > 0) {
     $sn = 0; // Initialize serial number
     while ($row = $result->fetch_assoc()) {
-      $bid = $row['bid'];
-      $mid = $row['mid'];
-      $uname = $row['uname'];
-      $tname = $row['tname'];
-      $mname = $row['mname'];
-      $uid = $row['uid'];
-      $show_date = $row['show_date'];
-      $show_time = $row['show_time'];
+      $fname = $row['fname'];
+      $movieName = $row['movie_name'];
+      $showDate = date('F j, Y', strtotime($row['show_date'])); // Format the date
+      $showTime = date('h:i A', strtotime($row['show_time'])); // Format the time
+      $bookingDate = date('F j, Y', strtotime($row['booking_date'])); // Format the booking date
+      $bookingTime = date('h:i A', strtotime($row['booking_time'])); // Format the booking time
+      $seatNumbers = $row['seat_numbers'];
+      $numSeatsBooked = $row['num_seats_booked'];
       $sn++;
 
       echo "
       <tr>
-        <td>$sn</td>
-        <td>$mname</td>
-        <td>$tname</td>
-        <td>$uid</td>
-        <td>$uname</td>
-        <td>$show_date</td>
-        <td>$show_time</td>
+      <td>$fname</td>
+      <td>$movieName</td>
+      <td>$showDate</td>
+      <td>$showTime</td>
+      <td>$bookingDate</td>
+      <td>$bookingTime</td>
+      <td>$numSeatsBooked</td>
+      <td>$seatNumbers</td>
       </tr>
       ";
     }
   } else {
-    echo "<tr><td colspan='7'>No booking list found</td></tr>";
+    echo "<tr><td colspan='8'>No booking list found</td></tr>";
   }
 
   $conn->close();

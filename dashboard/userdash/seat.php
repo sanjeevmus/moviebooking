@@ -1,234 +1,228 @@
-<!DOCTYPE html>
-<html lang="en">
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        .container {
+            max-width: 40rem;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
 
-  <title>Movie Seat Booking</title>
-  <style>
-    /* Your CSS styles here */
-    @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+        h1 {
+            text-align: center;
+        }
 
-    * {
-      box-sizing: border-box;
-    }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
 
-    body {
-      background-color: #242333;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      place-items: center;
-      height: 100vh;
-      font-family: 'Lato', sans-serif;
-      margin: 0;
-    }
+        .seat-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
 
-    .movie-container {
-      margin: 20px 0;
-    }
+        .seat {
+            margin: 5px;
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+        }
 
-    .movie-container select {
-      background-color: #fff;
-      border: 0;
-      border-radius: 5px;
-      font-size: 14px;
-      margin-left: 10px;
-      padding: 5px 15px;
-      -moz-appearance: none;
-      -webkit-appearance: none;
-      appearance: none;
-    }
+        .seat.selected {
+            background-color: #4CAF50;
+            color: #fff;
+        }
 
-    .container {
-      perspective: 1000px;
-      margin-bottom: 30px;
-      display: grid;
-    }
+        input[type="submit"] {
+            display: block;
+            margin: 20px auto 0;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
 
-    .row {
-      display: flex;
-    }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+<?php
+// Start a session if not already started (required for using $_SESSION)
+session_start();
 
-    .seat {
-      background-color: #444451;
-      height: 15px;
-      width: 15px;
-      margin: 5px;
-      padding: 18px;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      transition: background-color 0.2s ease-in-out;
-      display: flex;
-    }
-
-    .seat.selected {
-      background-color: #6feaf6;
-    }
-
-    .seat.occupied {
-      background-color: red;
-    }
-
-    .seat:not(.occupied):hover {
-      cursor: pointer;
-      transform: scale(1.2);
-    }
-
-    .showcase .seat:not(.occupied):hover {
-      cursor: default;
-      transform: scale(1);
-    }
-
-    .showcase {
-      background: rgba(0, 0, 0, 0.1);
-      padding: 5px 10px;
-      border-radius: 5px;
-      color: #777;
-      list-style-type: none;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .showcase li {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 10px;
-    }
-
-    .showcase li small {
-      margin-left: 2px;
-    }
-
-    .screen {
-    background-color: #fff;
-    height: 150px;
-    width: 100%;
-    margin: 15px 0;
-    /* transform: rotateX(-45deg); */
-    /* box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7); */
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "moviebooking";
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
-    p.text {
-      margin: 5px 0;
+$movieId = $_POST['mid'];
+$selectedDate = $_POST['selected_date'];
+$showTime = $_POST['fshow'];
+
+// Retrieve booked seat IDs from the database
+$sqlBookedSeats = "SELECT seat_id FROM bookings WHERE movie_id = $movieId AND show_date = '$selectedDate' AND show_time = '$showTime'";
+$resultBookedSeats = $conn->query($sqlBookedSeats);
+$bookedSeatIds = [];
+if ($resultBookedSeats && $resultBookedSeats->num_rows > 0) {
+    while ($row = $resultBookedSeats->fetch_assoc()) {
+        $bookedSeatIds[] = $row['seat_id'];
+    }
+}
+
+// Check if the user is logged in and the email address is available in the session
+//if (!isset($_SESSION['email'])) {
+    // Redirect the user to the login page or display an error message
+   // header('Location: login.php');
+   // exit;
+//}
+
+// Get the email address of the logged-in user
+//$email = $_SESSION['email'];
+
+if (isset($_POST['bookSeats'])) {
+    // Fetch the ticket price for the selected movie from the database
+    $sqlMoviePrice = "SELECT price FROM movie WHERE id = $movieId";
+    $resultMoviePrice = $conn->query($sqlMoviePrice);
+    if ($resultMoviePrice && $resultMoviePrice->num_rows > 0) {
+        $row = $resultMoviePrice->fetch_assoc();
+        $ticketPrice = floatval($row['price']);
+    } else {
+        echo "<p>Error fetching ticket price.</p>";
+        // You may handle this error as per your requirement
+        exit;
     }
 
-    p.text span {
-      color: #6feaf6;
-    }
+    // Ensure $_POST data is present and correct
+    if (isset($_POST['seats']) && is_array($_POST['seats']) && isset($_POST['fname'])) {
+        $selectedSeats = $_POST['seats'];
+        $fname = $_POST['fname'];
+        $availableSeats = array_diff($selectedSeats, $bookedSeatIds);
 
-    button.submit-btn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #6feaf6;
-      color: #242333;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      cursor: pointer;
+        // Check if any seats are available to book
+        if (count($availableSeats) > 0) {
+            $totalPrice = count($availableSeats) * $ticketPrice; // Calculate the total price
+
+            // Start a transaction to ensure consistency in the database
+            $conn->begin_transaction();
+
+            try {
+                foreach ($availableSeats as $seatId) {
+                    // Insert the booking details along with the user's name and email
+                    $sqlInsertBooking = "INSERT INTO bookings (movie_id, show_date, show_time, seat_id, total_price, fname, email) 
+                                        VALUES ($movieId, '$selectedDate', '$showTime', $seatId, $totalPrice, '$fname', '$email')";
+                    if ($conn->query($sqlInsertBooking) !== TRUE) {
+                        throw new Exception("Error booking Seat $seatId: " . $conn->error);
+                    }
+                }
+
+                // Commit the transaction if all insertions are successful
+                $conn->commit();
+
+                echo "<p>Seats booked successfully!</p>";
+                header('location: booking-sucess.php');
+                exit;
+            } catch (Exception $e) {
+                // Rollback the transaction in case of any error during insertions
+                $conn->rollback();
+                echo "<p>Booking failed: " . $e->getMessage() . "</p>";
+            }
+        } else {
+            echo "<p>All selected seats are already booked.</p>";
+        }
+    } else {
+        echo "";
     }
-  </style>
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Seat Booking Form</title>
+    <link rel="stylesheet" href="seats.css">
 </head>
-
 <body>
-  <h1>Movie Seat Booking</h1>
-  <form action="test.php" method="POST">
-  <div class="movie-container">
-    <label for="movie">Pick a movie:</label>
-    <select id="movie" name="movie">
-    <?php
-      // Assuming you have a database connection and the necessary query to fetch movie data
-      // Replace "your-db-connection", "username", "password", and "your-movies-table" with the appropriate values
-      $db = new PDO('mysql:host=localhost;dbname=moviebooking', 'root', '');
-      $stmt = $db->query('SELECT * FROM movie');
-      $movies = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-      foreach ($movies as $movie) {
-        $id = $movie['id'];
-        $name = $movie['name'];
-        $price = $movie['price'];
-        $duration = $movie['duration'];
-        echo "<option value=\"$price\">$name (Rs$price)</option>";
-      }
-      ?>
-    </select>
-  </div>
-  <ul class="showcase">
-    <li>
-      <div class="seat"></div>
-      <small>Available</small>
-    </li>
-    <li>
-      <div class="seat selected"></div>
-      <small>Selected</small>
-    </li>
-    <li>
-      <div class="seat occupied"></div>
-      <small>Reserved</small>
-    </li>
-  </ul>
-  <div class="container">
-    <div class="screen"></div>
-    <div class="row">
-       <div class="seat" value="1">1</div>
-      <div class="seat" value="2">2</div>
-      <div class="seat" value="3">3</div>
-      <div class="seat" value="4">4</div>
-      <div class="seat" value="5">5</div>
-      <div class="seat" value="6">6</div>
-      <div class="seat" value="7">7</div>
-      <div class="seat" value="8">8</div>
+    <div class="container">
+        <h1>Seat Booking Form</h1>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+            <p>Ticket Price: Rs.<span id="ticketPrice"><?php echo $ticketPrice; ?></span></p>
+            <p>Total Price: Rs.<span id="totalPrice">0.00</span></p>
+            <input type="hidden" name="mid" value="<?php echo $movieId; ?>">
+            <input type="hidden" name="selected_date" value="<?php echo $selectedDate; ?>">
+            <input type="hidden" name="fshow" value="<?php echo $showTime; ?>">
+            <label>Enter the name you want to book for:
+            <input type="text" name="fname" required></label>
+            
+            <label>Select Seats:</label>
+            <div class="seat-row">
+                <?php
+                $Seatid = 1;
+                for ($i = 1; $i <= 30; $i++) {
+                    $isBooked = in_array($Seatid, $bookedSeatIds);
+                    $disabled = $isBooked ? "disabled" : "";
+                    $selectedClass = $isBooked ? "selected" : "";
+                    echo "
+                        <div class='seat $selectedClass'>
+                            <input type='checkbox' name='seats[]' value='$Seatid' $disabled>
+                            Seat $Seatid
+                        </div>
+                    ";
+                    $Seatid++;
+                }
+                ?>
+            </div>
+            <input type="submit" name="bookSeats" value="Book Seats">
+            <a href="index.php">Cancel Booking</a>
+        </form>
     </div>
-    <div class="row">
-      <div class="seat" value="9">9</div>
-      <div class="seat" value="10">10</div>
-      <div class="seat" value="11">11</div>
-      <div class="seat" value="12">12</div>
-      <div class="seat" value="13">13</div>
-      <div class="seat" value="14">14</div>
-      <div class="seat" value="15">15</div>
-      <div class="seat" value="16">16</div>
-    </div>
-    <div class="row">
-      <div class="seat" value="17">17</div>
-      <div class="seat" value="18">18</div>
-      <div class="seat" value="19">19</div>
-      <div class="seat" value="20">20</div>
-      <div class="seat" value="21">21</div>
-      <div class="seat" value="22">22</div>
-      <div class="seat" value="23">23</div>
-      <div class="seat" value="24">24</div>
-    </div>
-    <div class="row">
-    <div class="seat" value="25">25</div>
-      <div class="seat" value="26">26</div>
-      <div class="seat" value="27">27</div>
-      <div class="seat" value="28">28</div>
-      <div class="seat" value="29">29</div>
-      <div class="seat" value="30">30</div>
-      <div class="seat" value="31">31</div>
-      <div class="seat" value="32">32</div>
-    </div>
-    <div class="row">
-    <div class="seat" value="33">33</div>
-      <div class="seat" value="34">34</div>
-      <div class="seat" value="35">35</div>
-      <div class="seat" value="36">36</div>
-      <div class="seat" value="37">37</div>
-      <div class="seat" value="38">38</div>
-      <div class="seat" value="39">39</div>
-      <div class="seat" value="40">40</div>
-    </div>
-  </div>
-  <p class="text">
-    You have selected <span id="count">0</span> seats for a price of Rs<span id="total">0</span>
-  </p>
-
-  <button class="submit-btn" name="book_now" id="book_now">Submit</button>
-  </form>
-  <script src="script.js"></script>
 </body>
+<script>
+    const seatElements = document.querySelectorAll('.seat');
+    const totalPriceElement = document.getElementById('totalPrice');
+    const ticketPrice = parseFloat(document.getElementById('ticketPrice').textContent);
 
+    function updateTotalPrice() {
+        let totalPrice = 0;
+        const selectedSeats = [];
+        seatElements.forEach(seat => {
+            const checkbox = seat.querySelector('input[type="checkbox"]');
+            if (checkbox.checked) {
+                totalPrice += ticketPrice;
+                selectedSeats.push(checkbox.value);
+            }
+        });
+        totalPriceElement.textContent = totalPrice.toFixed(2);
+
+        // Add/remove 'selected-real-time' class to indicate the selected seats
+        seatElements.forEach(seat => {
+            const checkbox = seat.querySelector('input[type="checkbox"]');
+            if (selectedSeats.includes(checkbox.value)) {
+                seat.classList.add('selected-real-time');
+            } else {
+                seat.classList.remove('selected-real-time');
+            }
+        });
+    }
+
+    seatElements.forEach(seat => {
+        const checkbox = seat.querySelector('input[type="checkbox"]');
+        checkbox.addEventListener('change', updateTotalPrice);
+    });
+</script>
 </html>

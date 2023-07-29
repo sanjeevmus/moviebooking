@@ -102,21 +102,22 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-
-    // Get the movie ID from the form submission
-    $mid = $_POST['mid'] ?? null;
-
-    if ($mid === null) {
-        echo "Movie ID not provided.";
-        exit;
+   if (isset($_POST['book_now'])) {
+        if (empty($_POST['mid'])) {
+            echo "Movie ID not provided.";
+            exit;
+        }
+        $mid = $_POST['mid'];
     }
-
-    // Retrieve movie details from the database using the provided ID
-    $sql = "SELECT * FROM movie WHERE id = $mid";
-    $result = $conn->query($sql);
-
-    if ($result && $result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
+    if (isset($_POST['mid'])) {
+        $mid = $_POST['mid'];
+        $sql = "SELECT * FROM movie WHERE id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("i", $mid);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result && $result->num_rows > 0) {
+            $row = $result->fetch_assoc();
             // Extract movie details from the fetched row
             $name = $row['name'];
             $duration = $row['duration'];
@@ -147,36 +148,12 @@
     } else {
         echo "Movie not found.";
     }
-
-    // Process the form submission when booking seats
-    if (isset($_POST['bookSeats'])) {
-        // Get the selected number of seats, movie ID, and show date from the form submission
-        $seats = $_POST['seats'];
-        $mid = $_POST['mid'];
-        $showDate = $_POST['selected_date'];
-        $showTime = $fshow; // Set the default value for showTime
-       
-
-        // Format the date and time values
-        $showDateTime = date("Y-m-d H:i:s", strtotime("$showDate $showTime"));
-
-        // Insert the booking details into the database
-        $sqlSeats = "INSERT INTO bookings (seats, mid, show_date, show_time) VALUES ($seats, $mid, '$showDate', '$showTime')";
-
-        if ($conn->query($sqlSeats) === TRUE) {
-            // Redirect to a success page after successful booking
-            header("Location: test.php");
-            exit;
-        } else {
-            echo "<script> alert('Booking Failed: " . $conn->error . "');</script>";
-        }
-    }
-    ?>
+?>
 
     <div class="booking-form">
         <h2>Select Date and Time</h2>
 
-        <form action="" method="post">
+        <form action="seat.php" method="post">
             <!-- Display the fetched show dates in a dropdown list -->
             Select Date:
             <select name="selected_date">
@@ -196,7 +173,6 @@
             <input type="hidden" name="showtime" value="">
 
             <br>
-            Number of Seats: <input type="number" name="seats" id="seats" required><br><br>
             <input type="submit" name="bookSeats" value="Book Seats">
         </form>
     </div>
