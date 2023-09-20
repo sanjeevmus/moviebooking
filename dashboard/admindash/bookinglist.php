@@ -17,10 +17,11 @@ if(!isset(  $_SESSION['aemail'] ))
 
   .edit-delete-table {
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    /* border-collapse: collapse; */
+    /* margin-bottom: 20px; */
+    /* margin-top: 20px; */
     border-spacing: 7px;
+    height: 508px;
   }
 
   .edit-delete-table th,
@@ -40,13 +41,13 @@ if(!isset(  $_SESSION['aemail'] ))
 <table class="edit-delete-table">
   <tr>
     <th>Name</th>
+    <th>Movie Name</th>
     <th>Show Date</th>
     <th>Show Time</th>
     <th>Booking Date</th>
     <th>Booking Time</th>
     <th>Seats Booked</th>
     <th>Seat Numbers</th>
-    <th>Movie Name</th>
   </tr>
 
   <?php

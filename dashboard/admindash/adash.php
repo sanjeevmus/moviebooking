@@ -14,7 +14,7 @@ if (!isset($_SESSION['aemail'])) {
         .content {
             margin: 20px;
             padding: 20px;
-            height: 30rem;
+            height: 39rem;
             background-color:cadetblue;
         }
         

@@ -10,7 +10,7 @@ include('../admindash/aheader.php')
 
   .edit-delete-table {
     width: 100%;
-    height: 100%;
+    height: 258px;
     margin-bottom: 250px;
     margin-top: 20px;
     font-family: cursive;
@@ -28,6 +28,7 @@ include('../admindash/aheader.php')
 
   .edit-delete-table th {
     background-color: aquamarine;
+
   }
 
   .edit-delete-table td button {

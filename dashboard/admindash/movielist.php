@@ -22,9 +22,9 @@ if(!isset(  $_SESSION['aemail'] ))
 
   .edit-delete-table {
     width: 100%;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     margin-top: 20px;
-    height: 25rem;
+    height: 508px;
     font-family: cursive;
   }
 

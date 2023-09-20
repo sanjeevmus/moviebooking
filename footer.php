@@ -15,7 +15,6 @@
   display: flex; /* Use flexbox to align elements in a row */
   /* Allow elements to wrap to a new line if needed */
   justify-content:space-between;/* Space out the elements on the same line */
-  margin-bottom: 5px;
 }
 
 .container-content .contents,
