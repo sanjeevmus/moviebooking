@@ -9,68 +9,119 @@ if(!isset(  $_SESSION['aemail'] ))
 }
 
 ?>
+<style>
+  form {
+  width: 500px;
+  height: max-content;
+  margin-top: 20px;
+  padding: 40px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  margin-left: 35%;
+  margin-right: 30%;
+  margin-bottom: 20px;
+}
+
+h2 {
+  text-align: center;
+}
+
+label {
+  display: flex;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+textarea {
+  height: 100px;
+}
+
+input[type="submit"] {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+</style>
 <form action="addmovies.php" method="POST" enctype="multipart/form-data">
   <h2><u>Add Movie</u></h2>
 
-  <label for="title">Movie Name:</label>
+  <label for="title">Movie Name:</label><br>
   <input type="text" id="name" name="name" required><br>
   
-  <label for="description">Description:</label>
+  <label for="description">Description:</label><br>
   <textarea id="description" name="description" required></textarea><br>
   
-  <label for="price">Ticket Price:</label>
+  <label for="price">Ticket Price:</label><br>
   <input type="number" id="price" name="price" required><br>
   <br>
 
 
-  <label for="image">Movie Poster Image:</label>
+  <label for="image">Movie Poster Image:</label><br>
   <input type="file" id="image" name="image" ><br>
 <br>
 
 
-  <label for="duration"> Movie Duration</label>
+  <label for="duration"> Movie Duration</label><br>
   <input type="text" id="duration" name="duration" required><br>
 <br>
 
 
-  <label for="relyear"> Release Date</label>
+  <label for="relyear"> Release Date</label><br>
   <input type="text" id="relyear" name="relyear" required><br>
 <br>
 
 
-<label for="director">Director:</label>
+<label for="director">Director:</label><br>
     <input type="text" id="director" name="director" required>
 <br>
 <br>
-    <label for="actor">Actors:</label>
+    <label for="actor">Actors:</label><br>
     <input type="text" id="actor" name="actor" required>
     <br>
 <br>
-    <label for="time">First Show</label>
+    <label for="time">First Show</label><br>
     <input type="time" id="fshow" name="fshow" required>
     <br>
 <br>
-    <label for="time">Second Show</label>
+    <label for="time">Second Show</label><br>
     <input type="time" id="sshow" name="sshow" required>
     <br>
 <br>
-    <label for="time">Third Show</label>
+    <label for="time">Third Show</label><br>
     <input type="time" id="tshow" name="tshow" required>
     <br>
 <br>
-<label for="date">First Show Date</label>
+<label for="date">First Show Date</label><br>
     <input type="date" id="fdate" name="fdate" required>
     <br>
 <br>
-<label for="date">Second Show Date</label>
+<label for="date">Second Show Date</label><br>
     <input type="date" id="sdate" name="sdate" required>
     <br>
 <br>
-  <input type="submit" value="Add Movie" name="add">
+  <input type="submit" value="Add Movie" name="add"><br>
 </form>
-<?php
-include ('../../footer.php');
-?>
+
 <?php
 $servername = "localhost";
 $username = "root";

@@ -60,7 +60,7 @@ body {
   }
   
   .vertical-menu{
-    width :60%;
+    width :70%;
     text-align: center;
   }
   .vertical-menu a{
@@ -82,8 +82,9 @@ body {
         <a href="../admindash/addmovies.php">Add Movies</a>
         <a href="../admindash/movielist.php">Movie List</a>
         <a href="../admindash/bookinglist.php">Booking List</a>
-        <a href="#">Now-Showing Movies</a>
-        <a href="#">Upcoming Movies</a>
+        <a href="addcoming.php">Upcoming Movies</a>
+        <a href="comingsoonlist.php">Upcoming Movies List</a>
+
         <a href="../admindash/usermanagement.php">Users</a>
     </div>
             <ul class="nav-menu" id="nav-menu">

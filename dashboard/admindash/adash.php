@@ -46,6 +46,5 @@ if (!isset($_SESSION['aemail'])) {
     <br>
 </div>
 
-<?php include('../../footer.php'); ?>
 </body>
 </html>

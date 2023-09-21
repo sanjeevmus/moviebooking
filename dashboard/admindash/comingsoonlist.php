@@ -1,9 +1,6 @@
 <?php
-include('../admindash/aheader.php');
-
+include ('../admindash/aheader.php');
 ?>
-
-
 <?php
 session_start();
 if(!isset(  $_SESSION['aemail'] ))
@@ -12,7 +9,6 @@ if(!isset(  $_SESSION['aemail'] ))
 }
 
 ?>
-
 <style>
   .h2 {
     text-align: center;
@@ -22,22 +18,20 @@ if(!isset(  $_SESSION['aemail'] ))
 
   .edit-delete-table {
     width: 100%;
-    /* margin-bottom: 20px; */
+    border-collapse: collapse;
+    margin-bottom: 20px;
     margin-top: 20px;
-    height: 508px;
-    font-family: cursive;
   }
 
   .edit-delete-table th,
   .edit-delete-table td {
     padding: 8px;
     text-align: left;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #ddd;
   }
 
   .edit-delete-table th {
-    background-color:aquamarine;
-    color: black;
+    background-color: #f2f2f2;
   }
 
   .edit-delete-table td button {
@@ -66,17 +60,9 @@ if(!isset(  $_SESSION['aemail'] ))
   <tr>
     <th>ID</th>
     <th>Movie Name</th>
-    <th>Description</th>
-    <th>Price</th>
-    <th>Duration</th>
-    <th>Release Year</th>
-    <th>Director</th>
-    <th>Actor</th>
-    <th>First Show</th>
-    <th>Second Show</th>
-    <th>Third Show</th>
-    <th>First Show Date</th>
-    <th>Second Show Date</th>
+    <th>descriptiin</th>
+        <th>Reldate</th>
+        <th>Director</th>
     <th>Image</th>
     <th>Action</th>
   </tr>
@@ -87,7 +73,7 @@ if(!isset(  $_SESSION['aemail'] ))
     die("Connection error: " . $conn->connect_error);
   }
 
-  $sql = "SELECT * FROM movie";
+  $sql = "SELECT * FROM coming_soon";
   $result = $conn->query($sql);
 
   if ($result && $result->num_rows > 0) {
@@ -95,41 +81,28 @@ if(!isset(  $_SESSION['aemail'] ))
       $id = $row['id'];
       $name = $row['name'];
       $description = $row['description'];
-      $price = $row['price'];
+    $reldate = $row['reldate'];
+    $director = $row['director'];
+   
       $image = $row['image'];
-      $duration = $row['duration'];
-      $relyear = $row['relyear'];
-      $director = $row['director'];
-      $actor = $row['actor'];
-      $fshow = $row['fshow'];
-      $sshow = $row['sshow'];
-      $tshow = $row['tshow'];
-      $fdate = $row['fdate'];
-      $sdate = $row['sdate'];
-
+     
 
       echo "
       <tr>
         <td>$id</td>
         <td>$name</td>
         <td>$description</td>
-        <td>$price</td>
-        <td>$duration</td>
-        <td>$relyear</td>
+        <td>$reldate</td>
         <td>$director</td>
-        <td>$actor</td>
-        <td>$fshow</td>
-        <td>$sshow</td>
-        <td>$tshow</td>
-        <td>$fdate</td>
-        <td>$sdate</td>
+       
+        
         <td ><img src='../../images/$image' style='width: 110px; height: 50px' alt='Movie Poster'></td>
         <td>
-          <form action='edit.php' method='POST'>
+          <form action='comingsoonedit.php' method='POST'>
             <input type='hidden' name='id' value='$id'>
             <input type='submit' class='edit-button' value='Edit'>
           </form>
-          <form action='delete.php' method='POST'>
+          <form action='deletecomingsoon.php' method='POST'>
             <input type='hidden' name='id' value='$id'>
             <input type='submit'   class='delete-button' value='Delete'>
           </form>
@@ -138,12 +111,9 @@ if(!isset(  $_SESSION['aemail'] ))
       ";
     }
   } else {
-    echo "<tr><td colspan='13'>No movies found</td></tr>";
+    echo "<tr><td colspan='6'>No movies found</td></tr>";
   }
 
   $conn->close();
   ?>
-  
 </table>
-
-
