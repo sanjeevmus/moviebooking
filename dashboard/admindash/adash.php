@@ -9,12 +9,11 @@ if (!isset($_SESSION['aemail'])) {
 <html>
 <head>
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="adashboard.css">
     <style>
         .content {
             margin: 20px;
             padding: 20px;
-            height: 39rem;
+            height: 32rem;
             background-color:cadetblue;
         }
         

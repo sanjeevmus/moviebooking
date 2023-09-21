@@ -4,44 +4,71 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="c.css">
     <title></title>
-   
- <style>
-.vertical-menu {
-  position: relative;
-  left: 0;
-  height: 100%;
-  display: flex;
-  font-family: cursive;
-  justify-content: center;
+    <style> 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: cadetblue;
 }
+  
+  .container {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    padding: 20px;
 
-.vertical-menu a {
-  color: #fff;
-  display: flex;
-  position: relative;
-  text-decoration: none;
-  margin-left: 50px;
-  margin-right: 50px;
-}
-.admin-login-info {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-    }
+  }
+  
+  /* Navigation */
+  .nav-wrapper {
+    background-color:black;
+    color: #fff;
+  
+  }
+  
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items:center ;
+    padding: 10px 20px;
 
-    .admin-login-info i {
-        margin: 0 10px;
-        cursor: pointer;
-    }
-
-    .admin-login-info img {
-        margin-left: 10px;
-    }
-
-    </style>
     
+  }
+  
+  .nav a.logo {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-menu li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .nav-menu li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .vertical-menu{
+    width :60%;
+    text-align: center;
+  }
+  .vertical-menu a{
+    text-decoration:none !important;
+    color: #fff;
+    padding: 30px;
+  }
+</style>
 </head>
 <body>
     <div class="nav-wrapper">
@@ -52,10 +79,11 @@
                 </a>
 </div>
             <div class="vertical-menu">
-        
         <a href="../admindash/addmovies.php">Add Movies</a>
         <a href="../admindash/movielist.php">Movie List</a>
         <a href="../admindash/bookinglist.php">Booking List</a>
+        <a href="#">Now-Showing Movies</a>
+        <a href="#">Upcoming Movies</a>
         <a href="../admindash/usermanagement.php">Users</a>
     </div>
             <ul class="nav-menu" id="nav-menu">

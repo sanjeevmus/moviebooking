@@ -113,12 +113,6 @@ if(!isset( $_SESSION['uid']))
     
         <img src='../../images/$image' alt=Movie Poster>
           <div class=movie-details>
-             Movie Title:<h5 class=movie-name>'$name'</h5>
-            Description: <p class=movie-description>$description</p>
-            Price: <p class=movie-price>$price</p>
-            Movie Duration <p class=movie-duration>$duration</p>
-            Directed By: <p class=movie-duration>$director</p>
-
             <form action='booking.php'  method='post'>
               <input type='hidden' name='duration' id='' value='$duration'>
               <input type='hidden' name='mid' id='' value='$mid'>

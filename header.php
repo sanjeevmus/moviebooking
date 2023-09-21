@@ -7,6 +7,61 @@
     <link rel="stylesheet" href="admin/a.css" type="text/css">
     <title>Register</title>
 </head>
+<style> 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background:cadetblue;
+  }
+  
+  .container {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+
+  }
+  
+  /* Navigation */
+  .nav-wrapper {
+    background-color:#6752ee;
+    color: #fff;
+  
+  }
+  
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items:center ;
+    padding: 10px 20px;
+
+    
+  }
+  
+  .nav a.logo {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-menu li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .nav-menu li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+</style>
 <body>
 <div class="nav-wrapper">
     <div class="container">

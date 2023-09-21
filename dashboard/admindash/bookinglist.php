@@ -7,9 +7,9 @@ if(!isset(  $_SESSION['aemail'] ))
     header("location:../../admin/alogin.php");
 }
 ?>
-<link rel="stylesheet" href="c.css">
+<!-- <link rel="stylesheet" href="c.css"> -->
  <style>
-  .h2 {
+  /* .h2 {
     text-align: center;
     font-weight: bold;
     font-family: cursive;
@@ -20,20 +20,20 @@ if(!isset(  $_SESSION['aemail'] ))
     /* border-collapse: collapse; */
     /* margin-bottom: 20px; */
     /* margin-top: 20px; */
-    border-spacing: 7px;
-    height: 508px;
-  }
+    /* border-spacing: 7px; */
+    /* height: 508px; */
+  /* } */
 
-  .edit-delete-table th,
-  .edit-delete-table td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid black;
-  }
+  /* .edit-delete-table th, */
+  /* .edit-delete-table td { */
+    /* padding: 8px; */
+    /* text-align: left; */
+    /* border-bottom: 1px solid black; */
+  /* } */
 
-  .edit-delete-table th {
+  /* .edit-delete-table th {
     background-color: aquamarine;
-  }
+  }  */
 </style> 
 
 <h2 class="h2">Booking List</h2>

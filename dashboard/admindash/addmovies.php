@@ -9,60 +9,6 @@ if(!isset(  $_SESSION['aemail'] ))
 }
 
 ?>
-<style>
-  form {
-    width: 30%;
-    display: grid;
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 15px;
-    margin-left: 30%;
-    margin-bottom: 20px;
-    font-family: cursive;
-    font-size: x-small;
-  }
-
- h2 {
-  text-align: center;
-}
-
-label {
-  display: flex;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-input[type="text"],
-input[type="number"],
-input[type="date"],
-textarea {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-}
-
-textarea {
-  height: 100px;
-}
-
-input[type="submit"] {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-input[type="submit"]:hover {
-  background-color: #45a049;
-} 
-
-</style> 
 <form action="addmovies.php" method="POST" enctype="multipart/form-data">
   <h2><u>Add Movie</u></h2>
 
