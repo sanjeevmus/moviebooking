@@ -26,6 +26,8 @@ if(isset($_POST['signinBtn'])) {
         $row = $result->fetch_assoc();
         $_SESSION['uname'] = $row['uname'];
         $_SESSION['uid'] = $row['uid'];
+        $_SESSION['useremail'] = $row['email'];
+
         
         // Redirect the user to the home page
         header("Location:dashboard/userdash/dash.php");

@@ -1,9 +1,11 @@
 <?php include('header.php'); ?>
+
 <?php
 session_start();
 if (!isset($_SESSION['uid'])) {
     header("location: ../../login.php");
 }
+$uid = $_SESSION['useremail'];
 ?>
 <style>
   .booking-list {
@@ -42,10 +44,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
-
-
-// Function to cancel a booking by ID and remove all bookings for the same date and time from the database
 function cancelBooking($conn, $bookingId) {
     // Get the booking date and time for the booking being canceled
     $sql_get_booking = "SELECT booking_date, booking_time FROM booking WHERE id = $bookingId";
@@ -56,7 +54,6 @@ function cancelBooking($conn, $bookingId) {
         $bookingDate = $row['booking_date'];
         $bookingTime = $row['booking_time'];
 
-        // Delete all bookings with the same date and time
         $sql_delete_bookings = "DELETE FROM booking WHERE booking_date = '$bookingDate' AND booking_time = '$bookingTime'";
         if ($conn->query($sql_delete_bookings) === TRUE) {
             return true;
@@ -67,8 +64,6 @@ function cancelBooking($conn, $bookingId) {
         return false;
     }
 }
-
-// Check if the cancel button is clicked and process the cancellation
 if (isset($_POST['cancel_booking'])) {
     $bookingIdToCancel = $_POST['booking_id'];
     if (cancelBooking($conn, $bookingIdToCancel)) {
@@ -78,13 +73,12 @@ if (isset($_POST['cancel_booking'])) {
     }
 }
 
-// Remove past bookings from the database
 $currentDate = date('Y-m-d');
-$sql_remove_old_bookings = "DELETE FROM booking WHERE show_date < '$currentDate'";
+$sql_remove_old_bookings = "DELETE FROM bookings WHERE show_date < '$currentDate'";
 $conn->query($sql_remove_old_bookings);
 
-// Fetch all the bookings for the logged-in user using the email address
-$sql = "SELECT booking.*, movie.name AS movie_name, COUNT(*) AS num_seats_booked FROM booking JOIN movie ON booking.movie_id = movie.id WHERE booking.email = '$email' GROUP BY booking_date, booking_time ORDER BY booking_date DESC, booking_time DESC";
+$sql = "SELECT bookings.*, movie.id AS id, COUNT(*) AS num_seats_booked FROM bookings JOIN movie ON bookings.movie_id = movie.id WHERE bookings.email = '$uid' GROUP BY bookings.booking_date, bookings.booking_time ORDER BY bookings.booking_date DESC, bookings.booking_time DESC";
+
 $result = $conn->query($sql);
 
 if ($result && $result->num_rows > 0) {
