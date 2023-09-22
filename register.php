@@ -3,23 +3,18 @@ include ('header.php');
 ?>
 <style>
 .container-1 {
-    padding: 7rem;
     align-items: center;
-
-  }
-.form{
-      padding-top: 130px;
+    padding-top: 6.5rem;
+    padding-bottom: 1.5rem;
     
-      
-    }
-  
+  }
   
   .form-box {
-    width: 40vh;
-    margin: -66px auto;
+    width: 50vh;
+    margin: -74px auto;
     background-color: #fff;
     border-radius: 5px;
-    height: 51vh;
+    height: 60vh;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
   
@@ -31,7 +26,7 @@ include ('header.php');
   
   .input-group {
     margin-bottom: 50px;
-    margin: 30px;
+    margin: 4px;
     font-family: cursive;
 
   }
@@ -50,8 +45,9 @@ include ('header.php');
   }
   
   .SignUp-link button {
-    width: 100%;
+    width: 50%;
     padding: 10px;
+    margin: 5px 100px 1px 100px;
     background-color: #333;
     color: #fff;
     border: none;

@@ -1,12 +1,8 @@
 <?php include('header.php'); ?>
 <style>
   .form{
-      padding-top: 10.4rem;
-      margin-bottom: 7.2rem;
-    
-      
+      padding-top: 4.8rem;
     }
-  
   
   .form-box {
     max-width: 400px;
@@ -41,8 +37,9 @@
   }
   
   .SignUp-link button {
-    width: 100%;
+    width: 50%;
     padding: 10px;
+    margin: 5px 100px 1px 100px;
     background-color: #333;
     color: #fff;
     border: none;

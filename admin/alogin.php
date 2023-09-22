@@ -4,10 +4,7 @@ include('../admin/header.php');
 <style>
   .form{
       padding-top: 4.7rem;
-    
-      
     }
-  
   
   .form-box {
     max-width: 400px;
