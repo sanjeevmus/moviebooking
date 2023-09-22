@@ -3,7 +3,7 @@ include('../admin/header.php');
 ?>
 <style>
   .form{
-      padding-top: 7.3rem;
+      padding-top: 4.7rem;
     
       
     }
@@ -42,8 +42,9 @@ include('../admin/header.php');
   }
   
   .SignUp-link button {
-    width: 100%;
+    width: 50%;
     padding: 10px;
+    margin: 5px 100px 1px 100px;
     background-color: #333;
     color: #fff;
     border: none;

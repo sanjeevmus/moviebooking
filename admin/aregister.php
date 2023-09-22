@@ -1,23 +1,18 @@
 <?php include('header.php'); ?>
 <style> 
   .container-1 {
-    padding: 7rem;
     align-items: center;
-
-  }
-.form{
-      padding-top: 130px;
+    padding-top: 7.5rem;
+    padding-bottom: 5.9rem;
     
-      
-    }
-  
+  }
   
   .form-box {
-    width: 40vh;
-    margin: -52px auto;
+    width: 50vh;
+    margin: -74px auto;
     background-color: #fff;
     border-radius: 5px;
-    height: 45vh;
+    height: 50vh;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
   
@@ -29,7 +24,7 @@
   
   .input-group {
     margin-bottom: 50px;
-    margin: 30px;
+    margin: 4px;
     font-family: cursive;
 
   }
@@ -48,8 +43,9 @@
   }
   
   .SignUp-link button {
-    width: 100%;
+    width: 50%;
     padding: 10px;
+    margin: 5px 100px 1px 100px;
     background-color: #333;
     color: #fff;
     border: none;
@@ -112,9 +108,9 @@
                 </div>
                 <div class="input-field">
                     <input type="contact" placeholder="Enter Your Phone Number" id="aphone" name="aphone" required><br>
-                </div>
+                </div><br>
                 <div class="SignUp-link">
-                    <button type="submit" name="signupBtn">Sign Up</button><br>
+                    <button type="submit" name="signupBtn">Sign Up</button><br><br>
                 </div>
                 <p>Already have an account? <a href="alogin.php">Sign in</a></p>
             </div>
