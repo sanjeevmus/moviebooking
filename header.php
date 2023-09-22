@@ -25,7 +25,7 @@ body {
   
   /* Navigation */
   .nav-wrapper {
-    background-color:#6752ee;
+    background-color:black;
     color: #fff;
   
   }
