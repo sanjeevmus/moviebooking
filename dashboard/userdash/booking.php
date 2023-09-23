@@ -130,10 +130,6 @@
             $fshow = $row['fshow'];
             $sshow = $row['sshow'];
             $tshow = $row['tshow'];
-            $fdate = date('Y-m-d', strtotime($row['fdate']));
-            $sdate = date('Y-m-d', strtotime($row['sdate']));
-            $fshow = date('H:i:s', strtotime($row['fshow']));
-            $sshow = date('H:i:s', strtotime($row['sshow']));
 
 
             // Display the movie details in HTML
@@ -161,15 +157,9 @@
             <!-- Display the fetched show dates in a dropdown list -->
             Select Date:
             <select name="selected_date">
-            <?php
-            if (!empty($fdate)) {
-                echo "<option value=\"$fdate\">$fdate</option>";
-            }
-            if (!empty($sdate)) {
-                echo "<option value=\"$sdate\">$sdate</option>";
-            }
-            ?>
-        </select>
+                <option value="<?php echo $fdate; ?>"><?php echo $fdate; ?></option>
+                <option value="<?php echo $sdate; ?>"><?php echo $sdate; ?></option>
+            </select>
             Show: 
             <select name="selected_date">
                 <option value="<?php echo $fshow; ?>"><?php echo $fshow; ?></option>
