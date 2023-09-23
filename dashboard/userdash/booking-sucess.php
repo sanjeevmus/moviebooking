@@ -16,6 +16,27 @@
             font-size: 18px;
             margin-top: 20px;
         }
+        .bill {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .bill p {
+            margin: 5px 0;
+        }
+
+        .bill strong {
+            display: inline-block;
+            width: 120px;
+        }
+
+        .download-link {
+            display: block;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -25,6 +46,7 @@
         <p>Your seats have been reserved successfully.</p>
         <p>Enjoy the movie!</p>
         <a href="dash.php">Home</a>
+        <a class="download-link" href="downloadbill.php?fname=<?php echo $fname; ?>&movieName=<?php echo $movieName; ?>&selectedDate=<?php echo $selectedDate; ?>&booking_date=<?php echo $booking_date; ?>&booking_time=<?php echo $booking_time; ?>&selectedShowTime=<?php echo $selectedShowTime; ?>&bookingDate=<?php echo $bookingDate; ?>&bookedSeats=<?php echo $bookedSeats; ?>&totalBookedSeats=<?php echo $totalBookedSeats; ?>&totalAmount=<?php echo $totalAmount; ?>">Download Bill</a>
     </div>
 </body>
 </html>

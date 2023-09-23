@@ -188,7 +188,7 @@ if (isset($_POST['bookSeats'])) {
                 ?>
             </div>
             <input type="submit" name="bookSeats" value="Book Seats">
-            <a href="index.php">Cancel Booking</a>
+            <a href="dash.php">Cancel Booking</a>
         </form>
     </div>
 </body>

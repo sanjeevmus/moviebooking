@@ -121,7 +121,7 @@ input[type="submit"]:hover {
 <br>
   <input type="submit" value="Add Movie" name="add"><br>
 </form>
-
+<!-- add movies backend -->
 <?php
 $servername = "localhost";
 $username = "root";

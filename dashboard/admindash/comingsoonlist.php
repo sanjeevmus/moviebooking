@@ -54,7 +54,7 @@ if(!isset(  $_SESSION['aemail'] ))
   
 </style>
 
-<h2 class="h2">Movie List</h2>
+<h2 class="h2">Coming Soon Movie List</h2>
 
 <table class="edit-delete-table">
   <tr>
@@ -102,7 +102,7 @@ if(!isset(  $_SESSION['aemail'] ))
             <input type='hidden' name='id' value='$id'>
             <input type='submit' class='edit-button' value='Edit'>
           </form>
-          <form action='deletecomingsoon.php' method='POST'>
+          <form action='comingsoondel.php' method='POST'>
             <input type='hidden' name='id' value='$id'>
             <input type='submit'   class='delete-button' value='Delete'>
           </form>

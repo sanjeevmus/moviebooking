@@ -7,6 +7,7 @@ if (!isset($_SESSION['aemail'])) {
     header("location:../../admin/alogin.php");
 }
 ?>
+<!-- Add Coming Soon Backend -->
 <?php
 // Database connection credentials
 $servername = "localhost";

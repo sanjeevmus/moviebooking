@@ -61,13 +61,12 @@
 <div class="nav-wrapper">
     <div class="container">
         <div class="nav">
-            <a href="#" class="logo">
+            <a href="dash.php" class="logo">
                 MOVIE WORLD
             </a>
         </div>
         <ul class="nav-menu" id="nav-menu">
                 <li><a href="mybookings.php">My Bookings</a></li>
-                <li><a href="#">Profile</a></li>
                 <li><a href="logoutbackend.php">Logout</a></li>
             </ul>
             <!-- MOBILE MENU TOGGLE -->
