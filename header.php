@@ -1,83 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="admin/a.css" type="text/css">
-    <title>Register</title>
-</head>
-<style> 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background:cadetblue;
-  }
-  
-  .container {
-    justify-content: space-between;
-    display: flex;
-    align-items: center;
-    padding: 20px;
 
-  }
-  
-  /* Navigation */
-  .nav-wrapper {
-    background-color:black;
-    color: #fff;
-  
-  }
-  
-  .nav {
-    display: flex;
-    justify-content: space-between;
-    align-items:center ;
-    padding: 10px 20px;
+<style>
+/* styles.css */
 
-    
-  }
-  
-  .nav a.logo {
-    color: #fff;
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
-  }
-  
-  .nav-menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .nav-menu li {
-    display: inline-block;
-    margin-right: 10px;
-  }
-  .nav-menu li a {
-    color: #fff;
-    text-decoration: none;
-  }
-  
+.custom-nav {
+background-color: #333;
+color: #fff;
+font-weight: bold;
+padding-left: 1rem;
+}
+
+.container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 1rem;
+}
+
+.logo {
+text-decoration: none;
+font-size: 24px;
+color: #fff;
+}
+
+.menu {
+list-style: none;
+margin: 0;
+padding: 0;
+display: flex;
+}
+
+.menu-item {
+margin-right: 1rem;
+position: relative;
+}
+
+.menu-link {
+padding: 10px;
+text-decoration: none;
+color: #fff;
+}
+
+.sub-menu {
+
+width: 9rem;
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+background-color: #333;
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+.sub-menu-item {
+font-size: 20px;
+}
+
+.menu-item:hover .sub-menu {
+display: block;
+}
+
 </style>
+</head>
 <body>
-<div class="nav-wrapper">
-    <div class="container">
-        <div class="nav">
-            <a href="#" class="logo">
-                MOVIE WORLD
-            </a>
-        </div>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#">Customer Services</a></li>
-                <li><a href="login.php">Sign In</a></li>
-                <li><a href="register.php">Register</a></li>
+<!-- Header section -->
+<div class="custom-nav">
+<div class="container">
+<div class="">
+    <a href="index.php" class="logo">MOVIE WORLD</a>
+    <!-- Navigation menu -->
+    <ul class="menu">
+        <li class="menu-item">
+            <a href="#" class="menu-link" id="movies-link">Movies</a>
+            <!-- Dropdown menu for movies -->
+            <ul class="sub-menu" id="movies-dropdown">
+                <li><a href="#" class="sub-menu-item">Now Showing</a></li>
+                <li><a href="comingsoon.php" class="sub-menu-item">Coming Soon</a></li>
             </ul>
-            <!-- MOBILE MENU TOGGLE -->
-
-            </div>
-        </div>
-    </div>
+        </li>
+        <li class="menu-item"><a href="mybookings.php" class="menu-link">My Bookings</a></li>
+        
+        <?php
+        // session_start();
+        // Check if a session is already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start(); // Start a new session if one is not already started
+}
+        if (isset($_SESSION['email'])) {
+            echo '<li class="menu-item">
+                    <a href="logout.php" class="menu-link">Logout</a>
+                  </li>';
+        } else {
+            echo '<li class="menu-item">
+                    <a href="login.php" class="menu-link">Login</a>
+                  </li>';
+            echo '<li class="menu-item">
+                    <a href="register.php" class="menu-link">Register</a>
+                  </li>';
+        }
+        ?>
+    </ul>
+</div>
+</div>
 </div>

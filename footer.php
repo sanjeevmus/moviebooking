@@ -7,7 +7,6 @@
   font-family: cursive;
   padding-left: 30px;
   padding-right: 30px;
-  margin-top: 5rem;
 
 }
 
