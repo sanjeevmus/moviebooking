@@ -203,7 +203,7 @@
                             <input type='hidden' name='mid' value='$mid'>
                             <input type='hidden' name='mname' value='$name'>
                             <input type='submit' name='book_now' value='Book Now' class='book-button'>
-                          </form>";
+                            </form>";
                 }
                 echo "</div>
                 </div>";
