@@ -336,7 +336,7 @@ $result = $conn->query($sql);
 </div>
 
     
-<script>
+<!-- <script>
     // Dropdown menu functionality
     const moviesLink = document.getElementById('movies-link');
     const moviesDropdown = document.getElementById('movies-dropdown');
@@ -344,7 +344,7 @@ $result = $conn->query($sql);
     moviesLink.addEventListener('click', function (event) {
         event.preventDefault();
         moviesDropdown.classList.toggle('hidden');
-    });
+    }); -->
 </script>
 </body>
 </html>

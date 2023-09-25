@@ -45,41 +45,130 @@ if(isset($_POST['signinBtn'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
-        .form-box {
-            max-width: 400px;
-            margin: 0 auto;
-        }
-    </style>
+       .form{
+      padding-top: 130px;
+      padding-bottom: 130px;
+    }
+    
+  .form-box {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    height: 100%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .form-box h1, .form-box h2 {
+    text-align: center;
+    color:tomato;
+    font-family: cursive;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+    margin: 20px;
+    font-family: cursive;
+
+  }
+  
+  .input-field input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    font-family: cursive;
+  }
+   p,p a{
+    font-size: small ;
+    text-align: center;
+
+  }
+  .SignUp-link button {
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: cursive;
+    align-items: center;
+  }
+  
+  .SignUp-link button:hover {
+    background-color: #555;
+  }
+  .vertical-menu {
+    background-color: #f1f1f1;
+    width: 100%;
+    position: relative;
+    left: 0;
+    height: 100%;
+    display: flex;
+    font-family: cursive;
+    justify-content: center;
+  }
+  
+  .vertical-menu a {
+    background-color: #ddd;
+    color: #333;
+    display: flex;
+    position: relative;
+    text-decoration: none;
+    padding-left: 85px;
+    padding-right: 85px;
+  }
+  .error {
+    border-color: red;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+}
+  /* Responsive Styles */
+  @media (max-width: 300px) {
+    .container {
+      padding: 0 10px;
+    }
+  }
+  
+</style>
 </head>
 
-<body class="">
-    <div class="">
-        <div class="">
-            <h1 class="">Sign In</h1>
+<body>
+    <div class="form">
+        <div class="form-box">
+            <h1 id="title">Sign In</h1>
             <form method="post" action="login.php">
-                <div class="mb-4">
-                    <label class="" for="email">
+                <div class="input-group">
+                    <div class="input-field">
+                    <label for="email">
                         Email
                     </label>
-                    <input class="" id="email" type="email" placeholder="Enter your email" name="email" required>
+                    <input id="email" type="email" placeholder="Enter your email" name="email" required>
                 </div>
-                <div class="">
-                    <label class="" for="password">
+                <div class="input-field">
+                    <label for="password">
                         Password
                     </label>
-                    <input class="" id="password" type="password" placeholder="Enter your password" name="password" required>
+                    <input id="password" type="password" placeholder="Enter your password" name="password" required>
                 </div>
-                <div class="">
-                    <p class="">
-                        <a class="" href="forgot.html">Forgot Password?</a>
+                    <p>
+                        <a href="forgot.html">Forgot Password?</a>
                     </p>
-                    <button class="" type="submit" name="signinBtn">
+                    <div class="SignUp-link">
+                    <button type="submit" name="signinBtn">
                         Sign In
                     </button>
-                    
                 </div>
                     <p>Don't have an account.....? <br><a href="register.php">Register</a></p>
+                </div>
             </form>
+        </div>
         </div>
     </div>
 </body>
