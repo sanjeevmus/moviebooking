@@ -96,13 +96,13 @@ if (isset($_POST['add'])) {
 ?>
 
 
-<!-- <style>
+<style>
   form {
-  width: 500px;
+  margin-bottom: 20px;
   height: max-content;
   margin-top: 20px;
   padding: 20px;
-  background-color: #f2f2f2;
+  background-color: white;
   border-radius: 5px;
   margin-left: 30%;
   margin-right: 30%;
@@ -147,7 +147,7 @@ input[type="submit"]:hover {
   background-color: #45a049;
 }
 
-</style> -->
+</style>
 <form action="addmovies.php" method="POST" enctype="multipart/form-data">
   <h2><u>Add Movie</u></h2>
 
